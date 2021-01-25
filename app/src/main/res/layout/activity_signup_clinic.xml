@@ -43,7 +43,8 @@
                 <ImageView
                     android:id="@+id/img_clinic"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"/>
                 <TextView
                     android:id="@+id/txt_selImage"
                     android:layout_width="match_parent"

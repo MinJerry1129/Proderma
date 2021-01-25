@@ -104,7 +104,7 @@ public class ClinicHomeActivity extends AppCompatActivity {
         _imgPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
+
             }
         });
         _imgInfo.setOnClickListener(new View.OnClickListener() {
@@ -204,9 +204,10 @@ public class ClinicHomeActivity extends AppCompatActivity {
                                     String doctor_name = theDoctor.get("name").getAsString();
                                     String doctor_age = theDoctor.get("age").getAsString();
                                     String doctor_info = theDoctor.get("information").getAsString();
+                                    String status = theDoctor.get("status").getAsString();
                                     String doctor_image = Common.getInstance().getBaseURL() + theDoctor.get("photo").getAsString();
 
-                                    mDoctor.add(new ClinicDoctor(doctor_id, doctor_name, doctor_age, doctor_info, doctor_image));
+                                    mDoctor.add(new ClinicDoctor(doctor_id, doctor_name, doctor_age, doctor_info, doctor_image,status));
                                 }
                                 for(JsonElement imageElement : clinics_images){
                                     JsonObject theimage = imageElement.getAsJsonObject();

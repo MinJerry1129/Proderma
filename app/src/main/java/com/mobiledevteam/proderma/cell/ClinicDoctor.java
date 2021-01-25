@@ -6,13 +6,15 @@ public class ClinicDoctor {
     private String mAge;
     private String mInfo;
     private String mImage;
+    private String mStatus;
 
-    public ClinicDoctor(String id,String name,String age,String info, String image){
+    public ClinicDoctor(String id,String name,String age,String info, String image,String status){
         mId=id;
         mName=name;
         mAge = age;
         mInfo = info;
         mImage = image;
+        mStatus = status;
     }
 
     public String getmId() {
@@ -24,5 +26,6 @@ public class ClinicDoctor {
     public String getmAge() { return mAge;}
     public String getmInfo() { return mInfo;}
     public String getmImage() {return mImage;}
+    public String getmStatus() {return mStatus;}
 }
 

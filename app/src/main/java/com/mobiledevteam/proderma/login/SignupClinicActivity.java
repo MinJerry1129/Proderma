@@ -160,6 +160,7 @@ public class SignupClinicActivity extends AppCompatActivity {
                 //imageView.setImageBitmap();
                 filePath=image.getPath();
                 mSelImageStatus = "yes";
+                _txtSelImage.setVisibility(View.GONE);
                 _imgClinic.setImageURI(Uri.parse(filePath));
             }
         }
