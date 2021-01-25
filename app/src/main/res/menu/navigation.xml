@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/ic_outline_home_24"
+        android:title="@string/menu_clinic" />
+    <item
+        android:id="@+id/navigation_event"
+        android:icon="@drawable/ic_outline_event_24"
+        android:title="@string/menu_event" />
+    <item
+        android:id="@+id/navigation_chat"
+        android:icon="@drawable/ic_outline_chat_24"
+        android:title="@string/menu_chat" />
+    <item
+        android:id="@+id/navigation_history"
+        android:icon="@drawable/ic_outline_history_24"
+        android:title="@string/menu_history" />
+    <item
+        android:id="@+id/navigation_setting"
+        android:icon="@drawable/ic_outline_settings_24"
+        android:title="@string/menu_setting" />
+</menu>

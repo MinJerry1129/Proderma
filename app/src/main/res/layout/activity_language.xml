@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LanguageActivity"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/_20sdp">
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_english"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_background_major"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="@string/lang_english"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_arabic"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/button_background_major"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:text="@string/lang_arabic"/>
+    </LinearLayout>
+
+
+</LinearLayout>
