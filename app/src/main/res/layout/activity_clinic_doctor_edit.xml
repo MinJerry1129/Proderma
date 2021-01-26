@@ -58,7 +58,7 @@
             android:text="Waiting Approve"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_2sdp"
-            android:padding="@dimen/_1sdp"
+            android:padding="@dimen/_3sdp"
             android:background="@drawable/button_background_light_major"/>
         <LinearLayout
             android:layout_width="match_parent"

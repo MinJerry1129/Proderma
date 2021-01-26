@@ -110,7 +110,7 @@ public class ClinicHomeActivity extends AppCompatActivity {
         _imgInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timerHandler.removeCallbacks(timerRunnable);
+//                timerHandler.removeCallbacks(timerRunnable);
                 Intent intent=new Intent(ClinicHomeActivity.this, ClinicInfoEditActivity.class);//LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -119,7 +119,7 @@ public class ClinicHomeActivity extends AppCompatActivity {
         _imgDoctor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timerHandler.removeCallbacks(timerRunnable);
+//                timerHandler.removeCallbacks(timerRunnable);
                 Intent intent=new Intent(ClinicHomeActivity.this, ClinicDoctorAddActivity.class);//LoginActivity.class);
                 startActivity(intent);
                 finish();
@@ -228,9 +228,14 @@ public class ClinicHomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        timerHandler.removeCallbacks(timerRunnable);
         Intent intent=new Intent(ClinicHomeActivity.this, HomeActivity.class);//LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        timerHandler.removeCallbacks(timerRunnable);
     }
 }
