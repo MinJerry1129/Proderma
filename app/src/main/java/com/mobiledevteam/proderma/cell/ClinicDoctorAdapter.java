@@ -56,7 +56,7 @@ public class ClinicDoctorAdapter extends RecyclerView.Adapter<ClinicDoctorAdapte
             public void onClick(View view) {
                 String status = Common.getInstance().getClinicpagetype();
                 if (status.equals("home")){
-                    Intent intent=new Intent(mContext, ClinicDoctorEditActivity.class);
+                    Intent intent=new Intent(mContext, ClinicDoctorEditActivity.class).putExtra("doctor_id",mDoctor.get(position).getmId() );
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     mContext.startActivity(intent);
                 }

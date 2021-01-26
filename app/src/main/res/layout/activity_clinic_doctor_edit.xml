@@ -51,11 +51,20 @@
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
+        <TextView
+            android:id="@+id/txt_approveStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Waiting Approve"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:padding="@dimen/_1sdp"
+            android:background="@drawable/button_background_light_major"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:layout_marginEnd="@dimen/_20sdp"
             android:layout_weight="2"
             android:orientation="vertical">
@@ -139,6 +148,17 @@
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:text="@string/clinic_update_doctor_btn"
+                android:textColor="@color/major" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_delete"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@drawable/button_background_light_major"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="@string/clinic_delete_doctor_btn"
                 android:textColor="@color/major" />
 
 

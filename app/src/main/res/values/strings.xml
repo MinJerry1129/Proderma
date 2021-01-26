@@ -38,6 +38,7 @@
     <string name="clinic_edit_doctor">Input Doctor Info</string>
     <string name="clinic_add_doctor_btn">Add</string>
     <string name="clinic_update_doctor_btn">Update</string>
+    <string name="clinic_delete_doctor_btn">delete</string>
     <string name="clinic_doctor_name">Doctor name</string>
     <string name="clinic_doctor_age">Age</string>
     <string name="clinic_doctor_info">Infomation</string>

@@ -170,8 +170,9 @@ public class OneClinicActivity extends AppCompatActivity {
                                     String doctor_info = theDoctor.get("information").getAsString();
                                     String doctor_status = theDoctor.get("status").getAsString();
                                     String doctor_image = Common.getInstance().getBaseURL() + theDoctor.get("photo").getAsString();
-
-                                    mDoctor.add(new ClinicDoctor(doctor_id, doctor_name, doctor_age, doctor_info, doctor_image,doctor_status));
+                                    if(doctor_status.equals("enable")){
+                                        mDoctor.add(new ClinicDoctor(doctor_id, doctor_name, doctor_age, doctor_info, doctor_image,doctor_status));
+                                    }
                                 }
                                 for(JsonElement imageElement : clinics_images){
                                     JsonObject theimage = imageElement.getAsJsonObject();
