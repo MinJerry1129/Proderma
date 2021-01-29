@@ -22,18 +22,21 @@ import java.util.Locale;
 public class SettingActivity extends AppCompatActivity {
     private Button _btnLogout;
     private Button _selLang;
+    private Button _setPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         _selLang = (Button)findViewById(R.id.btn_sellang);
+        _setPassword = (Button)findViewById(R.id.btn_setpass);
         _btnLogout = (Button)findViewById(R.id.btn_logout);
         setReady();
     }
     private void setReady(){
         if(Common.getInstance().getLogin_status().equals("no")){
             _btnLogout.setVisibility(View.GONE);
+            _setPassword.setVisibility(View.GONE);
         }
         _btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +45,13 @@ public class SettingActivity extends AppCompatActivity {
                 Intent intent=new Intent(getBaseContext(), LoginHomeActivity.class);//LoginActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+        _setPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(getBaseContext(), ChangePasswordActivity.class);//LoginActivity.class);
+                startActivity(intent);
             }
         });
         String selLang = Common.getInstance().getSelLang();

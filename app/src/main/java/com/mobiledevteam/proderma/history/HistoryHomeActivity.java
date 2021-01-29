@@ -75,7 +75,8 @@ public class HistoryHomeActivity extends AppCompatActivity {
                                     String count = theorder.get("count").getAsString();
                                     String extra = theorder.get("extra").getAsString();
                                     String orderdate = theorder.get("date").getAsString();
-                                    mAllOrderList.add(new OrderHistory(id,productname,productimage,count,extra,orderdate));
+                                    String status = theorder.get("status").getAsString();
+                                    mAllOrderList.add(new OrderHistory(id,productname,productimage,count,extra,orderdate,status));
                                 }
                                 initView();
                             } else {

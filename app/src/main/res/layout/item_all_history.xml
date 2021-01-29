@@ -77,6 +77,15 @@
                     android:text="2"
                     android:textStyle="bold"/>
             </LinearLayout>
+            <TextView
+                android:id="@+id/txt_status"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:textSize="12dp"
+                android:text="Out for Delivery"
+                android:textColor="@color/white"
+                android:gravity="center"
+                android:background="@drawable/button_background_light_major"/>
         </LinearLayout>
     </LinearLayout>
     <TextView

@@ -42,6 +42,17 @@ public class AllOrderHistroyAdapter extends ArrayAdapter<OrderHistory> {
         count.setText(currentEvent.getmCount());
         TextView extra = (TextView) listItem.findViewById(R.id.txt_extra);
         extra.setText(currentEvent.getmExtra());
+        TextView status = (TextView) listItem.findViewById(R.id.txt_status);
+        String order_status = currentEvent.getmStatus();
+        if(order_status.equals("waiting")){
+            status.setText("Order Prepared");
+        }else if(order_status.equals("accept")){
+            status.setText("Out for Delivery");
+            status.setBackgroundResource(R.drawable.button_background_major);
+        }else{
+            status.setText("Delivered");
+        }
+
         return listItem;
     }
 }

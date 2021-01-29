@@ -9,14 +9,16 @@ public class OrderHistory {
     private String mCount;
     private String mExtra;
     private String mDate;
+    private String mStatus;
 
-    public OrderHistory(String id,String productname,String productimage,String count,String extra, String orderdate){
+    public OrderHistory(String id,String productname,String productimage,String count,String extra, String orderdate,String status){
         mId=id;
         mProductName=productname;
         mProductImage = productimage;
         mCount=count;
         mExtra=extra;
         mDate = orderdate;
+        mStatus = status;
     }
 
     public String getmId() {
@@ -26,10 +28,12 @@ public class OrderHistory {
     public String getmCount() {return mCount;}
     public String getmExtra() { return mExtra;}
     public String getmDate() { return mDate;}
+    public String getmStatus() {return mStatus;}
 
     public String getmProductImage() {
         return Common.getInstance().getBaseURL()+mProductImage;
     }
+
 
 
 }

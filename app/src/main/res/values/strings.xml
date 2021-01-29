@@ -43,7 +43,13 @@
     <string name="clinic_doctor_name">Doctor name</string>
     <string name="clinic_doctor_age">Age</string>
     <string name="clinic_doctor_info">Infomation</string>
+    <string name="chat_message">Input message</string>
+    <string name="chat_send">Send</string>
     <string name="setting_logout">Log out</string>
+    <string name="setting_setpassword">Change Password</string>
+    <string name="setting_originalpassword">Original Password</string>
+    <string name="setting_newpassword">New Password</string>
+    <string name="setting_confirmpassword">Confirm Password</string>
 
 
 </resources>

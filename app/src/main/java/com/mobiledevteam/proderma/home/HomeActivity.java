@@ -31,6 +31,7 @@ import com.mobiledevteam.proderma.cell.HomeClinic;
 import com.mobiledevteam.proderma.cell.HomeClinicAdapter;
 import com.mobiledevteam.proderma.cell.HomeProduct;
 import com.mobiledevteam.proderma.cell.HomeProductAdapter;
+import com.mobiledevteam.proderma.chat.ChatActivity;
 import com.mobiledevteam.proderma.clinic.ClinicHomeActivity;
 import com.mobiledevteam.proderma.clinic.ClinicNormalActivity;
 import com.mobiledevteam.proderma.event.EventHomeActivity;
@@ -203,9 +204,8 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intent);
     }
     private void moveToChat(){
-//        Intent intent=new Intent(this, BuyerBasketActivity.class);
-//        startActivity(intent);
-//        finish();
+        Intent intent=new Intent(this, ChatActivity.class);
+        startActivity(intent);
     }
     private void moveToHistory(){
         String mLoginStatus = Common.getInstance().getLogin_status();

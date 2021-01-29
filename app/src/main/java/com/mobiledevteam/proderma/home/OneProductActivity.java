@@ -138,9 +138,11 @@ public class OneProductActivity extends AppCompatActivity {
         Date todaysdate = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         String date = format.format(todaysdate);
-
+        int extra = 0;
         int count = Integer.parseInt(_Count.getText().toString());
-        int extra = count / 20;
+        if(Common.getInstance().getClinictype().equals("elite")){
+            extra = count / 20;
+        }
         final ProgressDialog progressDialog = new ProgressDialog(this, R.style.AppTheme_Bright_Dialog);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Authenticating...");

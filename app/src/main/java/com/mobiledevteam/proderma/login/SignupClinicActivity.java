@@ -118,7 +118,6 @@ public class SignupClinicActivity extends AppCompatActivity {
         json.addProperty("info",clinicinfo);
         json.addProperty("photo",clinicImage);
 
-
         try {
             Ion.with(this)
                     .load(Common.getInstance().getBaseURL()+"api/signup")

@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Proderma">
-        <activity android:name=".clinic.ClinicNormalActivity"></activity>
+        <activity android:name=".chat.ChatActivity"></activity>
+        <activity android:name=".setting.ChangePasswordActivity" />
+        <activity android:name=".clinic.ClinicNormalActivity" />
         <activity android:name=".clinic.ClinicImageActivity" />
         <activity android:name=".setting.SettingActivity" />
         <activity android:name=".history.HistoryHomeActivity" />
