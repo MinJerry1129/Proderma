@@ -33,8 +33,11 @@ import java.util.regex.Pattern;
 
 public class SignupClinicActivity extends AppCompatActivity {
     private EditText _location;
+    private EditText _info;
+
     private ImageView _imgClinic;
     private TextView _txtSelImage;
+
     private Button _singup;
     private String mFirstname;
     private String mSecondname;
@@ -57,6 +60,7 @@ public class SignupClinicActivity extends AppCompatActivity {
         mPhone = getIntent().getStringExtra("phone");
         mPassword = getIntent().getStringExtra("password");
         _location = (EditText)findViewById(R.id.input_cliniclocation);
+        _info = (EditText)findViewById(R.id.input_clinicinfo);
         _imgClinic = (ImageView) findViewById(R.id.img_clinic);
         _txtSelImage = (TextView) findViewById(R.id.txt_selImage);
         _singup = (Button) findViewById(R.id.btn_signup);
@@ -97,6 +101,7 @@ public class SignupClinicActivity extends AppCompatActivity {
         byte[] b = baos.toByteArray();
         String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
         String cliniclocation  = _location.getText().toString();
+        String clinicinfo  = _info.getText().toString();
         String clinicImage = encodedImage;
 
         //String reEnterPassword = _reEnterPasswordText.getText().toString();
@@ -110,14 +115,8 @@ public class SignupClinicActivity extends AppCompatActivity {
         json.addProperty("phone",mPhone);
         json.addProperty("password",mPassword);
         json.addProperty("location",cliniclocation);
+        json.addProperty("info",clinicinfo);
         json.addProperty("photo",clinicImage);
-        Log.d("firstname:::", mFirstname);
-        Log.d("secondname:::", mSecondname);
-        Log.d("clinicname:::", mClinicname);
-        Log.d("email:::", mEmail);
-        Log.d("phone:::", mPhone);
-        Log.d("password:::", mPassword);
-        Log.d("location:::", cliniclocation);
 
 
         try {

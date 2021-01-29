@@ -166,6 +166,11 @@ public class ClinicDoctorEditActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             Log.d("result::", result.toString());
                             if (result != null) {
+                                Toast.makeText(getBaseContext(), "Update Success.", Toast.LENGTH_LONG).show();
+                                _txtStatus.setText("waiting approve");
+//                                Intent intent=new Intent(ClinicDoctorEditActivity.this, ClinicHomeActivity.class);//LoginActivity.class);
+//                                startActivity(intent);
+//                                finish();
                             } else {
 
                             }

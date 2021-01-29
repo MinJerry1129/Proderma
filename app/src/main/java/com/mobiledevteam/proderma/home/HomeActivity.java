@@ -32,6 +32,7 @@ import com.mobiledevteam.proderma.cell.HomeClinicAdapter;
 import com.mobiledevteam.proderma.cell.HomeProduct;
 import com.mobiledevteam.proderma.cell.HomeProductAdapter;
 import com.mobiledevteam.proderma.clinic.ClinicHomeActivity;
+import com.mobiledevteam.proderma.clinic.ClinicNormalActivity;
 import com.mobiledevteam.proderma.event.EventHomeActivity;
 import com.mobiledevteam.proderma.history.HistoryHomeActivity;
 import com.mobiledevteam.proderma.login.LoginHomeActivity;
@@ -51,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
     private TextView _txtAllClinic;
     private ArrayList<HomeProduct> mProduct=new ArrayList<>();
     private ArrayList<HomeClinic> mClinic=new ArrayList<>();
+    private String clinic_type = "normal";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         _clinicRecycle = (RecyclerView)findViewById(R.id.recycler_clinic);
         _productRecycle.setLayoutManager(layoutManager_product);
         _clinicRecycle.setLayoutManager(layoutManager_clinic);
+        clinic_type = Common.getInstance().getClinictype();
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setSelectedItemId(R.id.navigation_profile);
@@ -183,9 +186,16 @@ public class HomeActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }else{
-            Intent intent=new Intent(this, ClinicHomeActivity.class).putExtra("clinic_id", Common.getInstance().getClinicID());
-            startActivity(intent);
-            finish();
+            if(clinic_type.equals("elite")){
+                Intent intent=new Intent(this, ClinicHomeActivity.class).putExtra("clinic_id", Common.getInstance().getClinicID());
+                startActivity(intent);
+                finish();
+            }else{
+                Intent intent=new Intent(this, ClinicNormalActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
         }
     }
     private void moveToEvent(){

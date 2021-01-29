@@ -86,18 +86,23 @@ public class SigninActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             Log.d("result::", result.toString());
                             if (result != null) {
-                                String id = result.get("clinic_id").getAsString();
-                                if(id.equals("nouser")){
+                                String id = result.get("clinic_id").toString();
+                                Log.d("clinic_info::", id);
+                                if(id.equals("\"nouser\"")){
                                     Toast.makeText(getBaseContext(),"You are not registered, Please signup",Toast.LENGTH_LONG).show();
-                                }else if (id.equals("wrongpassword")){
+                                }else if (id.equals("\"wrongpassword\"")){
                                     Toast.makeText(getBaseContext(),"Please input correct password",Toast.LENGTH_LONG).show();
-                                }else if (id.equals("deleted")){
+                                }else if (id.equals("\"deleted\"")){
                                     Toast.makeText(getBaseContext(),"Your account is deleted, Please contact to support team",Toast.LENGTH_LONG).show();
-                                }else if (id.equals("waiting")){
+                                }else if (id.equals("\"waiting\"")){
                                     Toast.makeText(getBaseContext(),"Your account is not accepted, Please conatct to support team",Toast.LENGTH_LONG).show();
                                 }else{
-                                    Common.getInstance().setClinicID(id);
+                                    JsonObject clinic_object = result.getAsJsonObject("clinic_id");
+                                    String clinic_id = clinic_object.get("id").getAsString();
+                                    String type = clinic_object.get("type").getAsString();
+                                    Common.getInstance().setClinicID(clinic_id);
                                     Common.getInstance().setLogin_status("yes");
+                                    Common.getInstance().setClinictype(type);
                                     Intent intent=new Intent(getBaseContext(), HomeActivity.class);
                                     startActivity(intent);
                                     finish();

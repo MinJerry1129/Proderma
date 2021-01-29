@@ -2,11 +2,14 @@ package com.mobiledevteam.proderma;
 
 public class Common {
     private static Common instance = new Common();
-    private String baseURL = "http://10.0.2.2/proderma/";//http://phpstack-362651-1717329.cloudwaysapps.com/ , http://10.0.2.2/proderma/
+//    private String baseURL = "http://phpstack-362651-1717329.cloudwaysapps.com/";//http://phpstack-362651-1717329.cloudwaysapps.com/ , http://10.0.2.2/proderma/
+    private String baseURL = "http://10.0.2.2/proderma/";
     private String clinicpagetype;
     private String login_status="no";
     private String clinicID;
     private String selLang = "en";
+    private String clinictype = "normal";
+
 
 
     public void Comon(){
@@ -28,4 +31,7 @@ public class Common {
 
     public String getSelLang() {return selLang;}
     public void setSelLang(String selLang) {this.selLang = selLang;}
+
+    public String getClinictype() { return clinictype;}
+    public void setClinictype(String clinictype) {this.clinictype = clinictype;}
 }

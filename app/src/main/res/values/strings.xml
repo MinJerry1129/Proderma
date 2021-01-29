@@ -28,6 +28,7 @@
     <string name="login_clinicname">Clinic name</string>
     <string name="login_email">Email</string>
     <string name="login_phone">Phonenumber</string>
+    <string name="login_info">Information</string>
     <string name="login_password">Password</string>
     <string name="signup_enter">Enter</string>
     <string name="login_clinic_info">Input Clinic Info</string>

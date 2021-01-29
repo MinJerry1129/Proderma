@@ -2,15 +2,29 @@ package com.mobiledevteam.proderma.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.koushikdutta.async.future.FutureCallback;
+import com.koushikdutta.ion.Ion;
+import com.mobiledevteam.proderma.Common;
 import com.mobiledevteam.proderma.R;
 
+import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +37,9 @@ public class SignupActivity extends AppCompatActivity {
     private EditText _password;
     private TextView _singin;
     private Button _confirm;
-    private String[] mClinicInfo;
+    private CheckBox _chbClinic;
+    private String clinic_type ="normal";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +53,7 @@ public class SignupActivity extends AppCompatActivity {
         _password = (EditText)findViewById(R.id.input_password);
         _singin = (TextView) findViewById(R.id.txt_signin);
         _confirm = (Button) findViewById(R.id.btn_confirm);
+        _chbClinic = (CheckBox)findViewById(R.id.check_clinic);
         setReady();
     }
     private void setReady(){
@@ -54,6 +71,22 @@ public class SignupActivity extends AppCompatActivity {
                 confirm();
             }
         });
+        _chbClinic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                boolean checked = ((CheckBox) view).isChecked();
+                // Check which checkbox was clicked
+                if (checked){
+                    clinic_type = "elite";
+                    _confirm.setText("Enter");
+                }
+                else{
+                    clinic_type = "normal";
+                    _confirm.setText("SignUp");
+                    // Do your coding
+                }
+            }
+        });
     }
     private void confirm(){
         if(!validate()){
@@ -65,16 +98,63 @@ public class SignupActivity extends AppCompatActivity {
         String email = _email.getText().toString();
         String phone = _phone.getText().toString();
         String password = _password.getText().toString();
+        if(clinic_type .equals("elite")){
+            Intent intent=new Intent(this, SignupClinicActivity.class)
+                    .putExtra("firstname", firstName)
+                    .putExtra("secondname", secondName)
+                    .putExtra("clinicname",clinicName)
+                    .putExtra("email", email)
+                    .putExtra("phone", phone)
+                    .putExtra("password", password);
+            startActivity(intent);
+            finish();
+        }else{
+            final ProgressDialog progressDialog = new ProgressDialog(this, R.style.AppTheme_Bright_Dialog);
+            progressDialog.setIndeterminate(true);
+            progressDialog.setMessage("Creating Account...");
+            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            progressDialog.setCancelable(false);
+            progressDialog.show();
 
-        Intent intent=new Intent(this, SignupClinicActivity.class)
-                .putExtra("firstname", firstName)
-                .putExtra("secondname", secondName)
-                .putExtra("clinicname",clinicName)
-                .putExtra("email", email)
-                .putExtra("phone", phone)
-                .putExtra("password", password);
-        startActivity(intent);
-        finish();
+            // TODO: Implement your own signup logic here.
+            JsonObject json = new JsonObject();
+            json.addProperty("firstname",firstName);
+            json.addProperty("secondname",secondName);
+            json.addProperty("clinicname",clinicName);
+            json.addProperty("email", email);
+            json.addProperty("phone",phone);
+            json.addProperty("password",password);
+
+            try {
+                Ion.with(this)
+                        .load(Common.getInstance().getBaseURL()+"api/signup_normal")
+                        .setJsonObjectBody(json)
+                        .asJsonObject()
+                        .setCallback(new FutureCallback<JsonObject>() {
+                            @Override
+                            public void onCompleted(Exception e, JsonObject result) {
+                                progressDialog.dismiss();
+                                Log.d("result::", result.toString());
+                                if (result != null) {
+                                    String status = result.get("status").getAsString();
+                                    if (status.equals("ok")) {
+                                        Toast.makeText(getBaseContext(),"Signup Success, Please wait accept or contact to support team", Toast.LENGTH_LONG).show();
+                                    }else if (status.equals("existemail")) {
+                                        Toast.makeText(getBaseContext(),"Your account already exist, Please contact to support team", Toast.LENGTH_LONG).show();
+                                    } else if (status.equals("fail")) {
+                                        Toast.makeText(getBaseContext(),"Fail signup", Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+
+                                }
+                            }
+                        });
+            }catch(Exception e){
+                Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        }
+
+
     }
 
     public boolean validate() {

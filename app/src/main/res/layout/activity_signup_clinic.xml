@@ -58,51 +58,78 @@
             </FrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
-        android:layout_weight="2"
-        android:orientation="vertical">
-
-        <com.google.android.material.textfield.TextInputLayout
+        android:layout_weight="2">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="@drawable/layout_background_major">
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/input_cliniclocation"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_1sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:layout_marginBottom="@dimen/_1sdp"
-                android:background="#00ffffff"
-                android:hint="@string/login_clinic_location"
-                android:inputType="textEmailAddress"
-                android:textColor="#000" />
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/layout_background_major">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <EditText
+                    android:id="@+id/input_cliniclocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_1sdp"
+                    android:background="#00ffffff"
+                    android:hint="@string/login_clinic_location"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#000" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/layout_background_major">
+
+                <EditText
+                    android:id="@+id/input_clinicinfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginBottom="@dimen/_1sdp"
+                    android:background="#00ffffff"
+                    android:hint="@string/login_clinic_info"
+                    android:inputType="textEmailAddress"
+                    android:textColor="#000" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_signup"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:background="@drawable/button_background_light_major"
-            android:paddingStart="5dp"
-            android:paddingEnd="5dp"
-            android:text="@string/login_signup"
-            android:textColor="@color/major" />
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_signup"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/button_background_light_major"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:text="@string/login_signup"
+                android:textColor="@color/major" />
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
 
 </LinearLayout>
