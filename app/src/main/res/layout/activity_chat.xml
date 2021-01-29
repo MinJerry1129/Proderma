@@ -44,7 +44,6 @@
                 android:background="@drawable/layout_background_major"
                 android:inputType="textMultiLine"
                 android:gravity="top|start"
-                android:text="adfadf"
                 android:textColor="#000" />
 
             <androidx.appcompat.widget.AppCompatButton

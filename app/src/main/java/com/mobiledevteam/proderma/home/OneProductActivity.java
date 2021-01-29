@@ -92,6 +92,15 @@ public class OneProductActivity extends AppCompatActivity {
                 productRequest();
             }
         });
+        _imgInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                timerHandler.removeCallbacks(timerRunnable);
+                Intent intent = new Intent(getApplicationContext(), TrainingActivity.class).putExtra("product_id", mProductID);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         _productSlider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

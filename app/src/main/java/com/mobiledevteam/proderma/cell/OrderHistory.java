@@ -33,7 +33,4 @@ public class OrderHistory {
     public String getmProductImage() {
         return Common.getInstance().getBaseURL()+mProductImage;
     }
-
-
-
 }

@@ -15,10 +15,13 @@
     <string name="home_events">Events and Traininig</string>
     <string name="home_history">Order History</string>
     <string name="home_setting">Setting</string>
+    <string name="home_training">training</string>
     <string name="product_price">Price($):</string>
     <string name="product_quality">Quality:</string>
     <string name="product_information">Information:</string>
     <string name="product_request">Request Product</string>
+    <string name="train_video">Video</string>
+    <string name="train_pdf">P D F</string>
     <string name="lang_english">English</string>
     <string name="lang_arabic">عربى</string>
     <string name="login_signup">Sign Up</string>
