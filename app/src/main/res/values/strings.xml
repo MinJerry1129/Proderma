@@ -17,6 +17,7 @@
     <string name="home_setting">Setting</string>
     <string name="home_training">training</string>
     <string name="product_price">Price($):</string>
+    <string name="search_product">Search by name</string>
     <string name="product_quality">Quality:</string>
     <string name="product_information">Information:</string>
     <string name="product_request">Request Product</string>

@@ -48,7 +48,6 @@ public class SignupClinicActivity extends AppCompatActivity {
     private String mSelImageStatus = "no";
     private Image image;
     private String filePath;
-
     private String signup_status = "no";
 
     @Override

@@ -2,15 +2,13 @@ package com.mobiledevteam.proderma;
 
 public class Common {
     private static Common instance = new Common();
-//    private String baseURL = "http://phpstack-362651-1717329.cloudwaysapps.com/";//http://phpstack-362651-1717329.cloudwaysapps.com/ , http://10.0.2.2/proderma/
-    private String baseURL = "http://10.0.2.2/proderma/";
+    private String baseURL = "http://phpstack-362651-1717329.cloudwaysapps.com/";//http://phpstack-362651-1717329.cloudwaysapps.com/ , http://10.0.2.2/proderma/
+//    private String baseURL = "http://10.0.2.2/proderma/";
     private String clinicpagetype;
     private String login_status="no";
     private String clinicID;
     private String selLang = "en";
     private String clinictype = "normal";
-
-
 
     public void Comon(){
         //this.baseURL="http://localhost/jsontest/";

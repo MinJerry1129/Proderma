@@ -12,9 +12,9 @@
         android:layout_height="50dp"
         android:background="@color/major">
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_weight="1">
+            android:layout_marginEnd="20dp">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -29,14 +29,42 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="end">
-            <ImageView
-                android:id="@+id/img_notiview"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="10dp"
-                android:src="@drawable/ic_baseline_filter_list_24"
-                android:layout_marginEnd="@dimen/_10sdp"/>
+            android:gravity="center">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="20dp">
+
+                <EditText
+                    android:id="@+id/editSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@drawable/back_product_search"
+                    android:layout_marginStart="15dp"
+                    android:paddingStart="40dp"
+                    android:paddingEnd="40dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:hint="@string/search_product"/>
+                <ImageView
+                    android:id="@+id/imgSearch"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="20dp"
+                    android:src="@drawable/ic_search"/>
+                <ImageView
+                    android:id="@+id/imgSearch_Close"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:visibility="visible"
+                    android:layout_alignEnd="@id/editSearch"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/ic_search_close"/>
+            </RelativeLayout>
         </LinearLayout>
 
     </LinearLayout>

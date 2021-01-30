@@ -7,9 +7,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.Toast;
 
@@ -30,18 +33,50 @@ import java.util.ArrayList;
 public class AllProductActivity extends AppCompatActivity {
     private GridView _allGridView;
     ArrayList<HomeProduct> mAllProductList = new ArrayList<>();
+    private ArrayList<HomeProduct> mTempProductList;
+    private EditText _editSearch;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_product);
         _allGridView = (GridView)findViewById(R.id.grid_allProduct);
+        _editSearch = findViewById(R.id.editSearch);
+        setReady();
         getData();
+    }
+    private void setReady(){
         _allGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(getApplicationContext(), OneProductActivity.class).putExtra("product_id", mAllProductList.get(position).getmId());
+                Intent intent = new Intent(getApplicationContext(), OneProductActivity.class).putExtra("product_id", mTempProductList.get(position).getmId());
                 startActivity(intent);
+            }
+        });
+        _editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String pattern=_editSearch.getText().toString().trim();
+                searchRestaurant(pattern);
+            }
+        });
+        findViewById(R.id.imgSearch_Close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                _editSearch.setText("");
+                mTempProductList=new ArrayList<HomeProduct>(mAllProductList);
+                findViewById(R.id.imgSearch_Close).setVisibility(View.INVISIBLE);
+                initView();
             }
         });
     }
@@ -76,6 +111,7 @@ public class AllProductActivity extends AppCompatActivity {
                                     String description = theproduct.get("information").getAsString();
                                     mAllProductList.add(new HomeProduct(id,name,price,image,description));
                                 }
+                                mTempProductList=new ArrayList<HomeProduct>(mAllProductList);
                                 initView();
                             } else {
 
@@ -86,8 +122,37 @@ public class AllProductActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+    private void searchRestaurant(String pattern){
+        mTempProductList.clear();
+        if(pattern.isEmpty()){
+            mTempProductList=new ArrayList<HomeProduct>(mAllProductList);
+            findViewById(R.id.imgSearch_Close).setVisibility(View.INVISIBLE);
+        }
+        else{
+            for(HomeProduct theProduct:mAllProductList){
+                if(theProduct.getmName().toLowerCase().contains(pattern.toLowerCase())){
+                    mTempProductList.add(theProduct);
+                }
+            }
+            findViewById(R.id.imgSearch_Close).setVisibility(View.VISIBLE);
+        }
+        showProductList();
+    }
     private void initView(){
-        AllProductAdapter adapter_clinic = new AllProductAdapter(getBaseContext(), mAllProductList);
-        _allGridView.setAdapter(adapter_clinic);
+        this.runOnUiThread(new Runnable() {
+            public void run() {
+                AllProductAdapter adapter_clinic = new AllProductAdapter(getBaseContext(), mAllProductList);
+                _allGridView.setAdapter(adapter_clinic);
+            }
+        });
+    }
+    private void showProductList(){
+        this.runOnUiThread(new Runnable() {
+            public void run() {
+                AllProductAdapter mAdapter = new AllProductAdapter(getBaseContext(), mTempProductList);
+                _allGridView.setAdapter(mAdapter);
+            }
+        });
+
     }
 }
