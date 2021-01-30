@@ -49,6 +49,8 @@ public class SignupClinicActivity extends AppCompatActivity {
     private Image image;
     private String filePath;
 
+    private String signup_status = "no";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -131,6 +133,7 @@ public class SignupClinicActivity extends AppCompatActivity {
                             if (result != null) {
                                 String status = result.get("status").getAsString();
                                 if (status.equals("ok")) {
+                                    signup_status = "yes";
                                     Toast.makeText(getBaseContext(),"Signup Success, Please wait accept or contact to support team", Toast.LENGTH_LONG).show();
                                 }else if (status.equals("existemail")) {
                                     Toast.makeText(getBaseContext(),"Your account already exist, Please contact to support team", Toast.LENGTH_LONG).show();
@@ -174,5 +177,19 @@ public class SignupClinicActivity extends AppCompatActivity {
             _location.setError(null);
         }
         return valid;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(signup_status.equals("no")){
+            Intent intent=new Intent(this, SignupActivity.class);
+            startActivity(intent);
+            finish();
+        }else{
+            Intent intent=new Intent(this, SigninActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
     }
 }

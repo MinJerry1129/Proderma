@@ -81,10 +81,10 @@ public class TrainingActivity extends AppCompatActivity {
                 if (sel_type.equals("video")){
                     watchYoutubeVideo(mAllVideoList.get(position).getmUrl());
                 }else{
-                    Intent intent = new Intent(getApplicationContext(), PdfViewerActivity.class).putExtra("url", mAllPdfList.get(position).getmUrl());
-                    startActivity(intent);
-                    finish();
-//                    openPdf(mAllPdfList.get(position).getmUrl());
+//                    Intent intent = new Intent(getApplicationContext(), PdfViewerActivity.class).putExtra("url", mAllPdfList.get(position).getmUrl());
+//                    startActivity(intent);
+//                    finish();
+                    openPdf(mAllPdfList.get(position).getmUrl());
                 }
 
             }
@@ -163,8 +163,8 @@ public class TrainingActivity extends AppCompatActivity {
     }
     public void openPdf(String url){
 
-//        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-//        startActivity(browserIntent);
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(browserIntent);
     }
 
     @Override
