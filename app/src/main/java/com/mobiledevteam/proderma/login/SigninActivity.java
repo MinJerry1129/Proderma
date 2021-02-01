@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -33,6 +34,7 @@ public class SigninActivity extends AppCompatActivity {
     private EditText _password;
     private Button _btnLogin;
     private TextView _txtSignup;
+    private String phone_token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class SigninActivity extends AppCompatActivity {
         _password = (EditText)findViewById(R.id.input_password);
         _btnLogin = (Button) findViewById(R.id.btn_signin);
         _txtSignup = (TextView) findViewById(R.id.txt_signup);
+        phone_token = FirebaseInstanceId.getInstance().getToken();
 
         setReady();
     }
@@ -74,6 +77,7 @@ public class SigninActivity extends AppCompatActivity {
         JsonObject json = new JsonObject();
         json.addProperty("email", _email.getText().toString());
         json.addProperty("password", _password.getText().toString());
+        json.addProperty("phonetoken", phone_token);
 
         try {
             Ion.with(this)

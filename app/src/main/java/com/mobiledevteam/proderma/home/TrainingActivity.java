@@ -81,10 +81,9 @@ public class TrainingActivity extends AppCompatActivity {
                 if (sel_type.equals("video")){
                     watchYoutubeVideo(mAllVideoList.get(position).getmUrl());
                 }else{
-//                    Intent intent = new Intent(getApplicationContext(), PdfViewerActivity.class).putExtra("url", mAllPdfList.get(position).getmUrl());
-//                    startActivity(intent);
-//                    finish();
-                    openPdf(mAllPdfList.get(position).getmUrl());
+                    Intent intent = new Intent(getApplicationContext(), PdfViewerActivity.class).putExtra("url", mAllPdfList.get(position).getmUrl());
+                    startActivity(intent);
+//                    openPdf(mAllPdfList.get(position).getmUrl());
                 }
 
             }

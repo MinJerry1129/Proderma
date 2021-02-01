@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.FileUtils;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -29,6 +30,7 @@ public class PdfViewerActivity extends AppCompatActivity {
         _webviwer.getSettings().setJavaScriptEnabled(true);
         _webviwer.getSettings().setLoadWithOverviewMode(true);
         _webviwer.getSettings().setUseWideViewPort(true);
+        _webviwer.getSettings().setSupportZoom(true);
         _webviwer.setWebViewClient(new WebViewClient(){
 
             @Override
@@ -44,6 +46,6 @@ public class PdfViewerActivity extends AppCompatActivity {
             }
         });
 
-        _webviwer.loadUrl("http://www.africau.edu/images/default/sample.pdf");
+        _webviwer.loadUrl("https://docs.google.com/gview?embedded=true&url=" + pdf_url);
     }
 }

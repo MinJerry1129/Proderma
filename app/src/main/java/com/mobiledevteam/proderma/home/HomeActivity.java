@@ -6,11 +6,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -54,11 +58,17 @@ public class HomeActivity extends AppCompatActivity {
     private ArrayList<HomeProduct> mProduct=new ArrayList<>();
     private ArrayList<HomeClinic> mClinic=new ArrayList<>();
     private String clinic_type = "normal";
+    private String device_id;
+    private String phone_token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        device_id = Settings.Secure.getString(getBaseContext().getContentResolver(),
+                Settings.Secure.ANDROID_ID);
+        phone_token = FirebaseInstanceId.getInstance().getToken();
+
         LinearLayoutManager layoutManager_product = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager layoutManager_clinic = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
         _productRecycle = (RecyclerView)findViewById(R.id.recycler_product);
@@ -89,6 +99,8 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         getData();
+        Log.d("deviceId:::", device_id);
+        Log.d("phoneToken:::", phone_token);
 
     }
     private void initView(){
@@ -105,7 +117,8 @@ public class HomeActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         progressDialog.show();
         JsonObject json = new JsonObject();
-        json.addProperty("email", "");
+        json.addProperty("deviceid", device_id);
+        json.addProperty("phonetoken", phone_token);
 
         try {
             Ion.with(this)
