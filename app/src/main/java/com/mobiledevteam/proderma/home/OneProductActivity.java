@@ -51,7 +51,7 @@ public class OneProductActivity extends AppCompatActivity {
     private TextView _productname;
     private TextView _price;
     private TextView _info;
-    private ImageView _imgInfo;
+    private TextView _imgInfo;
     private Button _btnRequeset;
     private EditText _Count;
     private TextView _Extra;
@@ -93,7 +93,7 @@ public class OneProductActivity extends AppCompatActivity {
         _info = (TextView)findViewById(R.id.txt_productdescription);
         _Count = (EditText) findViewById(R.id.txt_buycount);
         _Extra = (TextView) findViewById(R.id.txt_extracount);
-        _imgInfo = (ImageView)findViewById(R.id.img_info);
+        _imgInfo = (TextView)findViewById(R.id.txt_info);
         _btnRequeset=(Button)findViewById(R.id.btn_request);
         _clinicRecycle = (RecyclerView)findViewById(R.id.recycler_clinic);
 

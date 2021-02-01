@@ -100,11 +100,13 @@
                         android:textStyle="bold"
                         android:textSize="@dimen/_20sdp"
                         android:textAlignment="center"/>
-                    <ImageView
-                        android:id="@+id/img_info"
-                        android:layout_width="@dimen/_25sdp"
-                        android:layout_height="@dimen/_25sdp"
-                        android:src="@drawable/ic_baseline_info_24"/>
+                    <TextView
+                        android:id="@+id/txt_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="More info"
+                        android:gravity="center"
+                        android:textColor="@color/major"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -253,7 +255,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:padding="@dimen/_5sdp"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Clinics have product"
+                    android:textColor="@color/major"
+                    android:textSize="@dimen/_12sdp"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_clinic"
                     android:layout_width="match_parent"

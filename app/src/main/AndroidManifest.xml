@@ -2,13 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mobiledevteam.proderma">
-
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -16,31 +18,33 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Proderma">
-        <activity android:name=".home.PdfViewerActivity"></activity>
-        <activity android:name=".home.TrainingActivity" />
-        <activity android:name=".chat.ChatActivity" />
-        <activity android:name=".setting.ChangePasswordActivity" />
-        <activity android:name=".clinic.ClinicNormalActivity" />
-        <activity android:name=".clinic.ClinicImageActivity" />
-        <activity android:name=".setting.SettingActivity" />
-        <activity android:name=".history.HistoryHomeActivity" />
-        <activity android:name=".event.EventHomeActivity" />
-        <activity android:name=".clinic.ClinicDoctorEditActivity" />
-        <activity android:name=".clinic.ClinicDoctorAddActivity" />
-        <activity android:name=".clinic.ClinicInfoEditActivity" />
-        <activity android:name=".clinic.ClinicHomeActivity" />
-        <activity android:name=".home.OneClinicActivity" />
-        <activity android:name=".login.SignupClinicActivity" />
-        <activity android:name=".login.SignupActivity" />
-        <activity android:name=".login.SigninActivity" />
-        <activity android:name=".login.LoginHomeActivity" />
-        <activity android:name=".LanguageActivity" />
-        <activity android:name=".home.OneProductActivity" />
-        <activity android:name=".home.AllProductActivity" />
-        <activity android:name=".home.AllClinicActivity" />
-        <activity android:name=".home.HomeActivity" />
-        <activity android:name=".MainActivity">
+        android:theme="@style/Theme.Proderma"
+        android:largeHeap="true"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".home.PdfViewerActivity" android:screenOrientation="portrait"></activity>
+        <activity android:name=".home.TrainingActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".chat.ChatActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".setting.ChangePasswordActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".clinic.ClinicNormalActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".clinic.ClinicImageActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".setting.SettingActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".history.HistoryHomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".event.EventHomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".clinic.ClinicDoctorEditActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".clinic.ClinicDoctorAddActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".clinic.ClinicInfoEditActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".clinic.ClinicHomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".home.OneClinicActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".login.SignupClinicActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".login.SignupActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".login.SigninActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".login.LoginHomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".LanguageActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".home.OneProductActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".home.AllProductActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".home.AllClinicActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".home.HomeActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

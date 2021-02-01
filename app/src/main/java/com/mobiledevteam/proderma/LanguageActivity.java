@@ -1,12 +1,20 @@
 package com.mobiledevteam.proderma;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,9 +22,10 @@ import com.mobiledevteam.proderma.home.HomeActivity;
 
 import java.util.Locale;
 
-public class LanguageActivity extends AppCompatActivity {
+public class LanguageActivity extends AppCompatActivity implements LocationListener {
     private Button _btnEnglish;
     private Button _btnArabic;
+    private LocationManager locationmanager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +33,12 @@ public class LanguageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_language);
         _btnEnglish = (Button)findViewById(R.id.btn_english);
         _btnArabic = (Button)findViewById(R.id.btn_arabic);
+        locationmanager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        String provider = locationmanager.getBestProvider(new Criteria(), true);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        locationmanager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 10, this);
         _btnEnglish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -34,9 +49,15 @@ public class LanguageActivity extends AppCompatActivity {
                 }
                 getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
                 Common.getInstance().setSelLang("en");
-                Intent intent=new Intent(getBaseContext(), HomeActivity.class);
-                startActivity(intent);
-                finish();
+                Handler handler=new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent=new Intent(getBaseContext(), HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                },3000);
             }
         });
         _btnArabic.setOnClickListener(new View.OnClickListener() {
@@ -49,10 +70,36 @@ public class LanguageActivity extends AppCompatActivity {
                 }
                 getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
                 Common.getInstance().setSelLang("ar");
-                Intent intent=new Intent(getBaseContext(), HomeActivity.class);
-                startActivity(intent);
-                finish();
+                Handler handler=new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent=new Intent(getBaseContext(), HomeActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                },3000);
             }
         });
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.d("Location:::", String.valueOf( location.getLatitude()));
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+        Log.d("providerEnabled:", s);
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
     }
 }

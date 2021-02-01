@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Proderma</string>
+    <string name="permission_deny">Proderma needs to access to your position as well as your phone to make calls when you ask it to. Allow Phone and Location permissions in your phone settings in order to use Proderma</string>
 
     <string name="menu_clinic">Clinic</string>
     <string name="menu_event">Event</string>
