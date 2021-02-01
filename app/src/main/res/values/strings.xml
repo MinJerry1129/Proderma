@@ -19,6 +19,7 @@
     <string name="product_price">Price($):</string>
     <string name="search_product">Search by name</string>
     <string name="product_quality">Quality:</string>
+    <string name="product_extra">Extra:</string>
     <string name="product_information">Information:</string>
     <string name="product_request">Request Product</string>
     <string name="train_video">Video</string>
