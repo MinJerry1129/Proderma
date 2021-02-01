@@ -1,6 +1,8 @@
 package com.mobiledevteam.proderma.home;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.app.ProgressDialog;
@@ -10,6 +12,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,7 +36,9 @@ import com.mobiledevteam.proderma.R;
 import com.mobiledevteam.proderma.cell.ClinicDoctor;
 import com.mobiledevteam.proderma.cell.ClinicDoctorAdapter;
 import com.mobiledevteam.proderma.cell.HomeClinic;
+import com.mobiledevteam.proderma.cell.HomeClinicAdapter;
 import com.mobiledevteam.proderma.cell.HomeProduct;
+import com.mobiledevteam.proderma.cell.HomeProductAdapter;
 import com.mobiledevteam.proderma.cell.PageViewAdapter;
 
 import java.text.SimpleDateFormat;
@@ -48,11 +54,16 @@ public class OneProductActivity extends AppCompatActivity {
     private ImageView _imgInfo;
     private Button _btnRequeset;
     private EditText _Count;
+    private TextView _Extra;
+    private RecyclerView _clinicRecycle;
 
     private HomeProduct mOneProduct;
     ArrayList<String> mAllProductList = new ArrayList<>();
+    private ArrayList<HomeClinic> mClinic=new ArrayList<>();
     private String mProductID;
     private int slideCurrentItem=0;
+    private String mPercent;
+    private String login_status = "no";
 
 
     Handler timerHandler = new Handler();
@@ -75,17 +86,26 @@ public class OneProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_one_product);
         mProductID = getIntent().getStringExtra("product_id");
+        login_status = Common.getInstance().getLogin_status();
         _productSlider = (ViewPager)findViewById(R.id.slider_product);
         _productname = (TextView)findViewById(R.id.txt_productname);
         _price = (TextView)findViewById(R.id.txt_productprice);
         _info = (TextView)findViewById(R.id.txt_productdescription);
         _Count = (EditText) findViewById(R.id.txt_buycount);
+        _Extra = (TextView) findViewById(R.id.txt_extracount);
         _imgInfo = (ImageView)findViewById(R.id.img_info);
         _btnRequeset=(Button)findViewById(R.id.btn_request);
+        _clinicRecycle = (RecyclerView)findViewById(R.id.recycler_clinic);
+
         setReady();
         getData();
     }
     private void setReady(){
+        LinearLayoutManager layoutManager_clinic = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
+        _clinicRecycle.setLayoutManager(layoutManager_clinic);
+        if(login_status.equals("yes")){
+            _btnRequeset.setVisibility(View.VISIBLE);
+        }
         _btnRequeset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +121,37 @@ public class OneProductActivity extends AppCompatActivity {
                 finish();
             }
         });
+        _Count.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                int extra = 0;
+                int count = 0;
+                if(_Count.getText().toString().equals("")){
+                    count = 0;
+                }else{
+                    count = Integer.parseInt(_Count.getText().toString());
+                }
+                int percent = Integer.parseInt(mPercent);
+
+                if(Common.getInstance().getClinictype().equals("elite")){
+                    extra = (count * percent) / 100;
+                    _Extra.setText(String.valueOf(extra));
+
+                }
+
+
+            }
+        });
         _productSlider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -124,6 +174,11 @@ public class OneProductActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+    private void initclinicView(){
+        HomeClinicAdapter adapter_clinic = new HomeClinicAdapter(getBaseContext(), mClinic);
+        _clinicRecycle.setAdapter(adapter_clinic);
     }
     private void initView(){
         setInfo();
@@ -147,10 +202,9 @@ public class OneProductActivity extends AppCompatActivity {
         Date todaysdate = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         String date = format.format(todaysdate);
-        int extra = 0;
-        int count = Integer.parseInt(_Count.getText().toString());
+        String extra = "";
         if(Common.getInstance().getClinictype().equals("elite")){
-            extra = count / 20;
+            extra = _Extra.getText().toString();
         }
         final ProgressDialog progressDialog = new ProgressDialog(this, R.style.AppTheme_Bright_Dialog);
         progressDialog.setIndeterminate(true);
@@ -162,7 +216,7 @@ public class OneProductActivity extends AppCompatActivity {
         json.addProperty("clinicid", Common.getInstance().getClinicID());
         json.addProperty("productid", mProductID);
         json.addProperty("count",_Count.getText().toString());
-        json.addProperty("extra",String.valueOf(extra));
+        json.addProperty("extra",extra);
         json.addProperty("date",date);
 
         try {
@@ -215,11 +269,25 @@ public class OneProductActivity extends AppCompatActivity {
                             if (result != null) {
                                 JsonObject product_object = result.getAsJsonObject("productInfo");
                                 JsonArray product_images = result.get("productImages").getAsJsonArray();
+                                JsonArray clinics_array = result.get("productOrder").getAsJsonArray();
+                                for(JsonElement clinicElement : clinics_array){
+                                    JsonObject theclinic = clinicElement.getAsJsonObject();
+                                    String id = theclinic.get("id").getAsString();
+                                    String name = theclinic.get("clinicname").getAsString();
+                                    String location = theclinic.get("location").getAsString();
+                                    String image = theclinic.get("photo").getAsString();
+                                    String description = theclinic.get("information").getAsString();
+                                    String phone = theclinic.get("mobile").getAsString();
+                                    String doctor = "0";
+                                    mClinic.add(new HomeClinic(id,name,location,image,description,phone,doctor));
+                                }
+
                                 String id = product_object.get("id").getAsString();
                                 String name = product_object.get("name").getAsString();
                                 String price = product_object.get("price").getAsString();
                                 String info = product_object.get("information").getAsString();
                                 String image = product_object.get("photo").getAsString();
+                                mPercent = product_object.get("percent").getAsString();
                                 mOneProduct = new HomeProduct(id,name,price,image,info);
                                 for(JsonElement imageElement : product_images){
                                     JsonObject theimage = imageElement.getAsJsonObject();
@@ -227,7 +295,9 @@ public class OneProductActivity extends AppCompatActivity {
                                     String image_url = theimage.get("url").getAsString();
                                     mAllProductList.add(Common.getInstance().getBaseURL() + image_url);
                                 }
+                                Log.d("clinicinfo:::", mClinic.toString());
                                 initView();
+                                initclinicView();
                             } else {
 
                             }
