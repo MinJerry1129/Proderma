@@ -48,7 +48,6 @@ public class AllProductActivity extends AppCompatActivity {
         _allGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Intent intent = new Intent(getApplicationContext(), OneProductActivity.class).putExtra("product_id", mTempProductList.get(position).getmId());
                 startActivity(intent);
             }

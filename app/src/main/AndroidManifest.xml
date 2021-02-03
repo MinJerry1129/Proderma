@@ -2,11 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mobiledevteam.proderma">
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -16,41 +17,91 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Proderma"
-        android:largeHeap="true"
         android:usesCleartextTraffic="true">
-        <activity android:name=".home.PdfViewerActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name=".home.TrainingActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".chat.ChatActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".setting.ChangePasswordActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".clinic.ClinicNormalActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".clinic.ClinicImageActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".setting.SettingActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".history.HistoryHomeActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".event.EventHomeActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".clinic.ClinicDoctorEditActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".clinic.ClinicDoctorAddActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".clinic.ClinicInfoEditActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".clinic.ClinicHomeActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".home.OneClinicActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".login.SignupClinicActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".login.SignupActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".login.SigninActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".login.LoginHomeActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".LanguageActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".home.OneProductActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".home.AllProductActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".home.AllClinicActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".home.HomeActivity" android:screenOrientation="portrait"/>
-        <activity android:name=".MainActivity" android:screenOrientation="portrait">
+        <activity android:name=".clinic.ClinicImageViewActivity"></activity>
+        <activity
+            android:name=".home.PdfViewerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.TrainingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".chat.ChatActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".setting.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".clinic.ClinicNormalActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".clinic.ClinicImageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".setting.SettingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".history.HistoryHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".event.EventHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".clinic.ClinicDoctorEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".clinic.ClinicDoctorAddActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".clinic.ClinicInfoEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".clinic.ClinicHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.OneClinicActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.SignupClinicActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.SignupActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.SigninActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.LoginHomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LanguageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.OneProductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.AllProductActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.AllClinicActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".home.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <service
             android:name=".MyFirebaseMessagingService"
             android:enabled="true"
