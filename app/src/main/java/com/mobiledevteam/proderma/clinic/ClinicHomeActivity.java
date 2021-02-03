@@ -105,14 +105,17 @@ public class ClinicHomeActivity extends AppCompatActivity {
         _imgPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+//                timerHandler.removeCallbacks(timerRunnable);
+                Intent intent=new Intent(ClinicHomeActivity.this, ClinicImageActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
         _imgInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                timerHandler.removeCallbacks(timerRunnable);
-                Intent intent=new Intent(ClinicHomeActivity.this, ClinicInfoEditActivity.class);//LoginActivity.class);
+                Intent intent=new Intent(ClinicHomeActivity.this, ClinicInfoEditActivity.class);
                 startActivity(intent);
                 finish();
             }
