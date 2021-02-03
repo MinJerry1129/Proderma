@@ -211,8 +211,8 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
                                 String location = doctor_object.get("location").getAsString();
                                 String info = doctor_object.get("information").getAsString();
                                 String image = doctor_object.get("photo").getAsString();
-                                String latitude = doctor_object.get("photo").getAsString();
-                                String longitude = doctor_object.get("photo").getAsString();
+                                String latitude = doctor_object.get("latitude").getAsString();
+                                String longitude = doctor_object.get("longitude").getAsString();
                                 my_location = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
                                 _clinicName.setText(clinicname);
                                 _clinicPhone.setText(mobile);

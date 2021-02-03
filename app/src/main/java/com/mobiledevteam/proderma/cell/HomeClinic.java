@@ -1,5 +1,6 @@
 package com.mobiledevteam.proderma.cell;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.mobiledevteam.proderma.Common;
 
 public class HomeClinic {
@@ -10,8 +11,9 @@ public class HomeClinic {
     private String mDescription;
     private String mPhone;
     private String mDoctor;
+    private LatLng mLatLng;
 
-    public HomeClinic(String id,String name,String location,String image,String description, String phone, String doctor){
+    public HomeClinic(String id,String name,String location,String image,String description, String phone, String doctor, LatLng mlatlng){
         mId=id;
         mName=name;
         mLocation = location;
@@ -19,6 +21,7 @@ public class HomeClinic {
         mDescription=description;
         mPhone = phone;
         mDoctor = doctor;
+        mLatLng = mlatlng;
     }
 
     public String getmId() {
@@ -41,4 +44,6 @@ public class HomeClinic {
 
     public String getmDoctor() {return mDoctor;}
     public String getmPhone() {return mPhone;}
+
+    public LatLng getmLatLng() {return mLatLng;}
 }

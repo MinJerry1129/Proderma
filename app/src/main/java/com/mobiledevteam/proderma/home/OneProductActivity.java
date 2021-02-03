@@ -1,15 +1,21 @@
 package com.mobiledevteam.proderma.home;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -26,6 +32,7 @@ import com.daimajia.slider.library.Animations.DescriptionAnimation;
 import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -65,6 +72,12 @@ public class OneProductActivity extends AppCompatActivity {
     private String mPercent;
     private String login_status = "no";
 
+    private Location mCurrentLocation;
+    private Location mClinicLocation1;
+    private Location mClinicLocation2;
+    private LatLng my_location;
+    private LocationManager locationmanager;
+
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -96,6 +109,24 @@ public class OneProductActivity extends AppCompatActivity {
         _imgInfo = (TextView)findViewById(R.id.txt_info);
         _btnRequeset=(Button)findViewById(R.id.btn_request);
         _clinicRecycle = (RecyclerView)findViewById(R.id.recycler_clinic);
+        mCurrentLocation = new Location("current");
+        mClinicLocation1 = new Location("clinic1");
+        mClinicLocation2 = new Location("clinic2");
+        locationmanager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        String provider = locationmanager.getBestProvider(new Criteria(), true);
+        Location LocationGps;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }else{
+            LocationGps = locationmanager.getLastKnownLocation(provider);
+        }
+        if (LocationGps != null) {
+            my_location = new LatLng(LocationGps.getLatitude(), LocationGps.getLongitude());
+        }else{
+            my_location = new LatLng(48.8499,2.3512);
+        }
+        mCurrentLocation.setLatitude(my_location.latitude);
+        mCurrentLocation.setLongitude(my_location.longitude);
 
         setReady();
         getData();
@@ -278,8 +309,11 @@ public class OneProductActivity extends AppCompatActivity {
                                     String image = theclinic.get("photo").getAsString();
                                     String description = theclinic.get("information").getAsString();
                                     String phone = theclinic.get("mobile").getAsString();
+                                    String latitude = theclinic.get("latitude").getAsString();
+                                    String longitude = theclinic.get("longitude").getAsString();
+                                    LatLng clinic_location = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
                                     String doctor = "0";
-                                    mClinic.add(new HomeClinic(id,name,location,image,description,phone,doctor));
+                                    mClinic.add(new HomeClinic(id,name,location,image,description,phone,doctor,clinic_location));
                                 }
 
                                 String id = product_object.get("id").getAsString();
@@ -297,7 +331,8 @@ public class OneProductActivity extends AppCompatActivity {
                                 }
                                 Log.d("clinicinfo:::", mClinic.toString());
                                 initView();
-                                initclinicView();
+                                sortList();
+
                             } else {
 
                             }
@@ -307,6 +342,26 @@ public class OneProductActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+    private void sortList(){
+        if(mClinic.size() != 0){
+            for (int i =0; i< mClinic.size(); i++){
+                for(int j= i+1; j<mClinic.size(); j++){
+                    HomeClinic temp;
+                    mClinicLocation1.setLatitude(mClinic.get(i).getmLatLng().latitude);
+                    mClinicLocation1.setLongitude(mClinic.get(i).getmLatLng().longitude);
+                    mClinicLocation2.setLatitude(mClinic.get(j).getmLatLng().latitude);
+                    mClinicLocation2.setLongitude(mClinic.get(j).getmLatLng().longitude);
+                    if(mCurrentLocation.distanceTo(mClinicLocation1) > mCurrentLocation.distanceTo(mClinicLocation2)){
+                        temp = mClinic.get(i);
+                        mClinic.set(i, mClinic.get(j));
+                        mClinic.set(j, temp);
+                    }
+                }
+            }
+        }
+        initclinicView();
+    }
+
     public boolean validate() {
         boolean valid = true;
         String count = _Count.getText().toString();

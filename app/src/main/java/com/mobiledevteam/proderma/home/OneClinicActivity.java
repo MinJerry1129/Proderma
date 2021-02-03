@@ -22,6 +22,7 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.daimajia.slider.library.SliderTypes.DefaultSliderView;
 import com.daimajia.slider.library.SliderTypes.TextSliderView;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -159,8 +160,11 @@ public class OneClinicActivity extends AppCompatActivity {
                                 String image = clinics_object.get("photo").getAsString();
                                 String description = clinics_object.get("information").getAsString();
                                 String phone = clinics_object.get("mobile").getAsString();
+                                String latitude = clinics_object.get("latitude").getAsString();
+                                String longitude = clinics_object.get("longitude").getAsString();
+                                LatLng clinic_location = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
                                 String doctor = "0";
-                                mOneClinic = new HomeClinic(id,name,location,image,description,phone,doctor);
+                                mOneClinic = new HomeClinic(id,name,location,image,description,phone,doctor,clinic_location);
 
                                 for(JsonElement doctorElement : doctors_array){
                                     JsonObject theDoctor = doctorElement.getAsJsonObject();

@@ -69,8 +69,8 @@ public class HomeClinicAdapter extends RecyclerView.Adapter<HomeClinicAdapter.Vi
 
     @Override
     public int getItemCount() {
-        if (mClinic.size() > 5) {
-            return 5;
+        if (mClinic.size() > 10) {
+            return 10;
         } else {
             return mClinic.size();
         }

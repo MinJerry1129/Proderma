@@ -65,8 +65,8 @@ public class HomeProductAdapter extends RecyclerView.Adapter<HomeProductAdapter.
 
     @Override
     public int getItemCount() {
-        if (mProduct.size() > 5) {
-            return 5;
+        if (mProduct.size() > 10) {
+            return 10;
         } else {
             return mProduct.size();
         }
