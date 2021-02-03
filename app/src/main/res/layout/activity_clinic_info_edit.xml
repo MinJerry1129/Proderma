@@ -100,7 +100,8 @@
                     android:background="#00ffffff"
                     android:text="United Arabic Embraite"
                     android:hint="@string/login_clinic_location"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:focusableInTouchMode="false"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 

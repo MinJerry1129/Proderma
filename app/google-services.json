@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "527105976941",
+    "project_id": "proderma-8f2af",
+    "storage_bucket": "proderma-8f2af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:527105976941:android:c62eb401251eb6f9472d64",
+        "android_client_info": {
+          "package_name": "com.mobiledevteam.proderma"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "527105976941-rvo4ogoq8rbha961jlc6jdk69m6f5dtn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApkOUDEBKVYSBdPv0QNT8kTbonpoK-g4o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "527105976941-rvo4ogoq8rbha961jlc6jdk69m6f5dtn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

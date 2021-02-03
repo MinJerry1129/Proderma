@@ -2,6 +2,7 @@ package com.mobiledevteam.proderma.clinic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -10,6 +11,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
@@ -22,6 +27,10 @@ import android.widget.Toast;
 
 import com.esafirm.imagepicker.features.ImagePicker;
 import com.esafirm.imagepicker.model.Image;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -31,6 +40,10 @@ import com.mobiledevteam.proderma.MainActivity;
 import com.mobiledevteam.proderma.R;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Arrays;
+import java.util.List;
+
+import static java.util.Locale.getDefault;
 
 public class ClinicInfoEditActivity extends AppCompatActivity {
     private ImageView _imgClinic;
@@ -43,11 +56,24 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
     private String mSelImg = "no";
     private Image image;
     private String filePath;
+    private LocationManager locationmanager;
+    private Geocoder geocoder;
+    private List<Address> addresses;
+    private LatLng my_location;
+    private Location LocationGps;
+    List<Place.Field> fields = Arrays.asList(
+            Place.Field.ID,
+            Place.Field.NAME,
+            Place.Field.ADDRESS,
+            Place.Field.LAT_LNG
+    );
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clinic_info_edit);
+        geocoder = new Geocoder(this, getDefault());
         mClinicID = Common.getInstance().getClinicID();
         _imgClinic = (ImageView)findViewById(R.id.img_clinic);
         _clinicName = (EditText)findViewById(R.id.input_clinicname);
@@ -59,6 +85,13 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
         getReady();
     }
     private void setReady(){
+        _clinicLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields).build(getBaseContext());
+                startActivityForResult(intent,101);
+            }
+        });
         _btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,6 +154,8 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
         json.addProperty("id", mClinicID);
         json.addProperty("clinicname", clinicname);
         json.addProperty("location", cliniclocation);
+        json.addProperty("latitude", String.valueOf(my_location.latitude));
+        json.addProperty("longitude", String.valueOf(my_location.longitude));
         json.addProperty("phone", clinicphone);
         json.addProperty("info", clinicinfo);
         json.addProperty("isChange", mSelImg);
@@ -176,7 +211,9 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
                                 String location = doctor_object.get("location").getAsString();
                                 String info = doctor_object.get("information").getAsString();
                                 String image = doctor_object.get("photo").getAsString();
-
+                                String latitude = doctor_object.get("photo").getAsString();
+                                String longitude = doctor_object.get("photo").getAsString();
+                                my_location = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
                                 _clinicName.setText(clinicname);
                                 _clinicPhone.setText(mobile);
                                 _clinicLocation.setText(location);
@@ -196,6 +233,13 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 101){
+            if(resultCode == Activity.RESULT_OK && data != null){
+                Place place = Autocomplete.getPlaceFromIntent(data);
+                _clinicLocation.setText(place.getAddress());
+                my_location = place.getLatLng();
+            }
+        }
         if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
             // or get a single image only
             image = ImagePicker.getFirstImageOrNull(data);

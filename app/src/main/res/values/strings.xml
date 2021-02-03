@@ -38,6 +38,8 @@
     <string name="login_password">Password</string>
     <string name="signup_enter">Enter</string>
     <string name="login_clinic_info">Input Clinic Info</string>
+    <string name="login_visa_password">Input Visa password</string>
+    <string name="login_visa_code">Input visa code(12345678901234)</string>
     <string name="login_clinic_register">Register</string>
     <string name="login_clinic_location">Clinic Location</string>
     <string name="clinic_update">Update</string>

@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
@@ -39,9 +42,17 @@ public class LanguageActivity extends AppCompatActivity implements LocationListe
             return;
         }
         locationmanager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 10, this);
+        ProgressDialog progressDialog = new ProgressDialog(this, R.style.AppTheme_Bright_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Creating Account...");
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        progressDialog.setCancelable(false);
         _btnEnglish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                progressDialog.show();
+
                 final Configuration configuration = getResources().getConfiguration();
                 LocaleHelper.setLocale(getBaseContext(), "en");
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -53,6 +64,7 @@ public class LanguageActivity extends AppCompatActivity implements LocationListe
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        progressDialog.dismiss();
                         Intent intent=new Intent(getBaseContext(), HomeActivity.class);
                         startActivity(intent);
                         finish();
@@ -63,10 +75,11 @@ public class LanguageActivity extends AppCompatActivity implements LocationListe
         _btnArabic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                progressDialog.show();
                 final Configuration configuration = getResources().getConfiguration();
-                LocaleHelper.setLocale(getBaseContext(), "en");
+                LocaleHelper.setLocale(getBaseContext(), "ar");
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                    configuration.setLayoutDirection(new Locale("en"));
+                    configuration.setLayoutDirection(new Locale("ar"));
                 }
                 getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
                 Common.getInstance().setSelLang("ar");
@@ -74,6 +87,7 @@ public class LanguageActivity extends AppCompatActivity implements LocationListe
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        progressDialog.dismiss();
                         Intent intent=new Intent(getBaseContext(), HomeActivity.class);
                         startActivity(intent);
                         finish();
