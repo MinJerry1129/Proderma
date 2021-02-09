@@ -56,6 +56,8 @@ import static java.util.Locale.getDefault;
 public class SignupClinicActivity extends AppCompatActivity {
     private EditText _location;
     private EditText _info;
+    private EditText _visa;
+    private EditText _pass;
 
     private ImageView _imgClinic;
     private TextView _txtSelImage;
@@ -111,6 +113,8 @@ public class SignupClinicActivity extends AppCompatActivity {
         mPassword = getIntent().getStringExtra("password");
         _location = (EditText)findViewById(R.id.input_cliniclocation);
         _info = (EditText)findViewById(R.id.input_clinicinfo);
+        _visa = (EditText)findViewById(R.id.input_visacode);
+        _pass = (EditText)findViewById(R.id.input_visapass);
         _imgClinic = (ImageView) findViewById(R.id.img_clinic);
         _txtSelImage = (TextView) findViewById(R.id.txt_selImage);
         _singup = (Button) findViewById(R.id.btn_signup);
@@ -242,12 +246,27 @@ public class SignupClinicActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
         String location = _location.getText().toString();
+        String visa = _visa.getText().toString();
+        String pass = _pass.getText().toString();
         if (location.isEmpty()) {
             _location.setError("Input Address");
             valid = false;
         } else {
             _location.setError(null);
         }
+        if (visa.isEmpty()) {
+            _visa.setError("Input visacode");
+            valid = false;
+        } else {
+            _visa.setError(null);
+        }
+        if (pass.isEmpty()) {
+            _pass.setError("Input password");
+            valid = false;
+        } else {
+            _location.setError(null);
+        }
+
         return valid;
     }
 
