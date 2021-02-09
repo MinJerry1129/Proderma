@@ -170,6 +170,8 @@ public class SignupClinicActivity extends AppCompatActivity {
         String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
         String cliniclocation  = _location.getText().toString();
         String clinicinfo  = _info.getText().toString();
+        String visacode  = _visa.getText().toString();
+        String visapass  = _pass.getText().toString();
         String clinicImage = encodedImage;
 
         //String reEnterPassword = _reEnterPasswordText.getText().toString();
@@ -184,6 +186,8 @@ public class SignupClinicActivity extends AppCompatActivity {
         json.addProperty("password",mPassword);
         json.addProperty("location",cliniclocation);
         json.addProperty("info",clinicinfo);
+        json.addProperty("visacode",visacode);
+        json.addProperty("visapass",visapass);
         json.addProperty("photo",clinicImage);
         json.addProperty("latitude",String.valueOf(my_location.latitude));
         json.addProperty("longitude",String.valueOf(my_location.longitude));
@@ -203,6 +207,10 @@ public class SignupClinicActivity extends AppCompatActivity {
                                 if (status.equals("ok")) {
                                     signup_status = "yes";
                                     Toast.makeText(getBaseContext(),"Signup Success, Please wait accept or contact to support team", Toast.LENGTH_LONG).show();
+                                }else if (status.equals("noclinic")) {
+                                    Toast.makeText(getBaseContext(),"You are not elite clinic, Please check visacode", Toast.LENGTH_LONG).show();
+                                }else if (status.equals("visapass")) {
+                                    Toast.makeText(getBaseContext(),"Your visa code password not correct.", Toast.LENGTH_LONG).show();
                                 }else if (status.equals("existemail")) {
                                     Toast.makeText(getBaseContext(),"Your account already exist, Please contact to support team", Toast.LENGTH_LONG).show();
                                 } else if (status.equals("fail")) {

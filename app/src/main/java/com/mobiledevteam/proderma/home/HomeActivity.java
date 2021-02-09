@@ -113,7 +113,7 @@ public class HomeActivity extends AppCompatActivity {
     private void getData(){
         final ProgressDialog progressDialog = new ProgressDialog(this, R.style.AppTheme_Bright_Dialog);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
+        progressDialog.setMessage("Getting Data...");
         progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         progressDialog.setCancelable(false);
         progressDialog.show();

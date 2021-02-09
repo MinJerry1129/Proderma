@@ -44,7 +44,7 @@ public class LanguageActivity extends AppCompatActivity implements LocationListe
         locationmanager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 10, this);
         ProgressDialog progressDialog = new ProgressDialog(this, R.style.AppTheme_Bright_Dialog);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
+        progressDialog.setMessage("Set Language...");
         progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         progressDialog.setCancelable(false);
         _btnEnglish.setOnClickListener(new View.OnClickListener() {
