@@ -215,6 +215,8 @@ public class SignupClinicActivity extends AppCompatActivity {
                                     Toast.makeText(getBaseContext(),"Your account already exist, Please contact to support team", Toast.LENGTH_LONG).show();
                                 } else if (status.equals("fail")) {
                                     Toast.makeText(getBaseContext(),"Fail signup", Toast.LENGTH_LONG).show();
+                                }else{
+                                    Toast.makeText(getBaseContext(),"Fail signup", Toast.LENGTH_LONG).show();
                                 }
                             } else {
 
