@@ -2,14 +2,21 @@ package com.mobiledevteam.proderma.home;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
@@ -50,7 +57,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements LocationListener {
     private RecyclerView _productRecycle;
     private RecyclerView _clinicRecycle;
     private TextView _txtAllNews;
@@ -61,6 +68,7 @@ public class HomeActivity extends AppCompatActivity {
     private String clinic_type = "normal";
     private String device_id;
     private String phone_token;
+    private LocationManager locationmanager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +77,14 @@ public class HomeActivity extends AppCompatActivity {
         device_id = Settings.Secure.getString(getBaseContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
         phone_token = FirebaseInstanceId.getInstance().getToken();
+
+        locationmanager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        String provider = locationmanager.getBestProvider(new Criteria(), true);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        locationmanager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 10, this);
+
 
         LinearLayoutManager layoutManager_product = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
         LinearLayoutManager layoutManager_clinic = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
@@ -241,5 +257,25 @@ public class HomeActivity extends AppCompatActivity {
         Intent intent=new Intent(this, SettingActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        Log.d("Location:::", String.valueOf( location.getLatitude()));
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
     }
 }

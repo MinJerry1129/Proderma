@@ -94,7 +94,7 @@
             android:id="@+id/check_clinic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Are you Elite Clinic?"/>
+            android:text="@string/signup_sel_clinic"/>
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -174,7 +174,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_5sdp"
             android:gravity="center_horizontal"
-            android:text="Have already account? Signin"
+            android:text="@string/signup_already"
             android:textAlignment="center"
             android:textSize="@dimen/_12sdp" />
 

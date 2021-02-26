@@ -23,12 +23,19 @@ import android.widget.Button;
 
 import com.mobiledevteam.proderma.home.HomeActivity;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Locale;
 
 public class LanguageActivity extends AppCompatActivity implements LocationListener {
     private Button _btnEnglish;
     private Button _btnArabic;
     private LocationManager locationmanager;
+    private String sel_lang = "en";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,8 @@ public class LanguageActivity extends AppCompatActivity implements LocationListe
         _btnEnglish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sel_lang = "en";
+                writeFile();
 
                 progressDialog.show();
 
@@ -75,6 +84,8 @@ public class LanguageActivity extends AppCompatActivity implements LocationListe
         _btnArabic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                sel_lang = "ar";
+                writeFile();
                 progressDialog.show();
                 final Configuration configuration = getResources().getConfiguration();
                 LocaleHelper.setLocale(getBaseContext(), "ar");
@@ -95,6 +106,16 @@ public class LanguageActivity extends AppCompatActivity implements LocationListe
                 },3000);
             }
         });
+    }
+    private  void writeFile(){
+        try {
+            FileOutputStream fileOutputStream = openFileOutput("lang.pdm", MODE_PRIVATE);
+            fileOutputStream.write(sel_lang.getBytes());
+            fileOutputStream.close();
+        }catch (FileNotFoundException e){
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

@@ -39,8 +39,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/slider_clinic"
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     app:layout_constraintDimensionRatio="H,1:1"
@@ -48,7 +47,14 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     android:layout_alignParentTop="true"
-                    android:background="@color/white"/>
+                    app:cardCornerRadius="@dimen/_10sdp">
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/slider_clinic"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/white"/>
+                </androidx.cardview.widget.CardView>
+
             </androidx.constraintlayout.widget.ConstraintLayout >
 
             <LinearLayout
@@ -77,13 +83,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_background_light_major">
-                    <ImageView
-                        android:id="@+id/img_clinic"
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_80sdp"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        android:src="@drawable/clinic"
-                        android:scaleType="centerCrop"/>
+                        app:cardCornerRadius="@dimen/_10sdp">
+                        <ImageView
+                            android:id="@+id/img_clinic"
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:src="@drawable/clinic"
+                            android:scaleType="centerCrop"/>
+                    </androidx.cardview.widget.CardView>
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -93,7 +105,7 @@
                         android:layout_gravity="center">
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_30sdp"
+                            android:layout_height="@dimen/_25sdp"
                             android:gravity="center">
                             <ImageView
                                 android:layout_width="@dimen/_20sdp"
@@ -109,7 +121,7 @@
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_30sdp"
+                            android:layout_height="@dimen/_25sdp"
                             android:gravity="center">
                             <ImageView
                                 android:layout_width="@dimen/_20sdp"
@@ -120,6 +132,24 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="+1234567890"
+                                android:paddingStart="@dimen/_5sdp"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_9sdp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_25sdp"
+                            android:gravity="center">
+                            <ImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/whatsapp"/>
+                            <TextView
+                                android:id="@+id/txt_whatsapp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="+1234567890"
+                                android:paddingStart="@dimen/_5sdp"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_9sdp"/>
                         </LinearLayout>

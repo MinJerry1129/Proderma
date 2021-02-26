@@ -25,6 +25,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -63,6 +64,7 @@ public class OneProductActivity extends AppCompatActivity {
     private EditText _Count;
     private TextView _Extra;
     private RecyclerView _clinicRecycle;
+    private LinearLayout price_view;
 
     private HomeProduct mOneProduct;
     ArrayList<String> mAllProductList = new ArrayList<>();
@@ -109,6 +111,7 @@ public class OneProductActivity extends AppCompatActivity {
         _imgInfo = (TextView)findViewById(R.id.txt_info);
         _btnRequeset=(Button)findViewById(R.id.btn_request);
         _clinicRecycle = (RecyclerView)findViewById(R.id.recycler_clinic);
+        price_view = (LinearLayout) findViewById(R.id.price_view);
         mCurrentLocation = new Location("current");
         mClinicLocation1 = new Location("clinic1");
         mClinicLocation2 = new Location("clinic2");
@@ -136,6 +139,7 @@ public class OneProductActivity extends AppCompatActivity {
         _clinicRecycle.setLayoutManager(layoutManager_clinic);
         if(login_status.equals("yes")){
             _btnRequeset.setVisibility(View.VISIBLE);
+            price_view.setVisibility(View.VISIBLE);
         }
         _btnRequeset.setOnClickListener(new View.OnClickListener() {
             @Override

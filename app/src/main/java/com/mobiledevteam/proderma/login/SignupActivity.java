@@ -78,11 +78,11 @@ public class SignupActivity extends AppCompatActivity {
                 // Check which checkbox was clicked
                 if (checked){
                     clinic_type = "elite";
-                    _confirm.setText("Enter");
+                    _confirm.setText(getResources().getText(R.string.signup_enter));
                 }
                 else{
                     clinic_type = "normal";
-                    _confirm.setText("SignUp");
+                    _confirm.setText(getResources().getText(R.string.login_signup));
                     // Do your coding
                 }
             }

@@ -36,7 +36,7 @@
                 android:layout_height="25dp"
                 android:text="Clinic Name"
                 android:textSize="@dimen/_15sdp"
-                android:textColor="@color/black"
+                android:textColor="@color/major"
                 android:gravity="center"
                 android:textStyle="bold"/>
             <TextView
@@ -44,6 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:text="Koramangala,Banglore"
+                android:textColor="@color/lightmajor"
                 android:gravity="center"
                 android:textStyle="bold"/>
             <LinearLayout
@@ -78,6 +79,25 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="+1234567890"
+                    android:textColor="@color/lightmajor"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/whatsapp"/>
+                <TextView
+                    android:id="@+id/txt_whatsapp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="+1234567890"
+                    android:textColor="@color/lightmajor"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:textStyle="bold"/>
             </LinearLayout>
