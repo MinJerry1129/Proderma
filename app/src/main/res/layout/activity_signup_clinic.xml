@@ -158,27 +158,6 @@
                     android:textColor="#000" />
 
             </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/layout_background_major">
-
-                <EditText
-                    android:id="@+id/input_visapass"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_1sdp"
-                    android:layout_marginEnd="@dimen/_15sdp"
-                    android:layout_marginBottom="@dimen/_1sdp"
-                    android:background="#00ffffff"
-                    android:hint="@string/login_visa_password"
-                    android:inputType="textEmailAddress"
-                    android:textColor="#000" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
 
             <androidx.appcompat.widget.AppCompatButton

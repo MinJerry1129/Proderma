@@ -57,7 +57,6 @@ public class SignupClinicActivity extends AppCompatActivity {
     private EditText _location;
     private EditText _info;
     private EditText _visa;
-    private EditText _pass;
 
     private ImageView _imgClinic;
     private TextView _txtSelImage;
@@ -114,7 +113,6 @@ public class SignupClinicActivity extends AppCompatActivity {
         _location = (EditText)findViewById(R.id.input_cliniclocation);
         _info = (EditText)findViewById(R.id.input_clinicinfo);
         _visa = (EditText)findViewById(R.id.input_visacode);
-        _pass = (EditText)findViewById(R.id.input_visapass);
         _imgClinic = (ImageView) findViewById(R.id.img_clinic);
         _txtSelImage = (TextView) findViewById(R.id.txt_selImage);
         _singup = (Button) findViewById(R.id.btn_signup);
@@ -171,7 +169,6 @@ public class SignupClinicActivity extends AppCompatActivity {
         String cliniclocation  = _location.getText().toString();
         String clinicinfo  = _info.getText().toString();
         String visacode  = _visa.getText().toString();
-        String visapass  = _pass.getText().toString();
         String clinicImage = encodedImage;
 
         //String reEnterPassword = _reEnterPasswordText.getText().toString();
@@ -187,7 +184,6 @@ public class SignupClinicActivity extends AppCompatActivity {
         json.addProperty("location",cliniclocation);
         json.addProperty("info",clinicinfo);
         json.addProperty("visacode",visacode);
-        json.addProperty("visapass",visapass);
         json.addProperty("photo",clinicImage);
         json.addProperty("latitude",String.valueOf(my_location.latitude));
         json.addProperty("longitude",String.valueOf(my_location.longitude));
@@ -209,8 +205,6 @@ public class SignupClinicActivity extends AppCompatActivity {
                                     Toast.makeText(getBaseContext(),"Signup Success, Please wait accept or contact to support team", Toast.LENGTH_LONG).show();
                                 }else if (status.equals("noclinic")) {
                                     Toast.makeText(getBaseContext(),"You are not elite clinic, Please check visacode", Toast.LENGTH_LONG).show();
-                                }else if (status.equals("visapass")) {
-                                    Toast.makeText(getBaseContext(),"Your visa code password not correct.", Toast.LENGTH_LONG).show();
                                 }else if (status.equals("existemail")) {
                                     Toast.makeText(getBaseContext(),"Your account already exist, Please contact to support team", Toast.LENGTH_LONG).show();
                                 } else if (status.equals("fail")) {
@@ -257,7 +251,6 @@ public class SignupClinicActivity extends AppCompatActivity {
         boolean valid = true;
         String location = _location.getText().toString();
         String visa = _visa.getText().toString();
-        String pass = _pass.getText().toString();
         if (location.isEmpty()) {
             _location.setError("Input Address");
             valid = false;
@@ -269,12 +262,6 @@ public class SignupClinicActivity extends AppCompatActivity {
             valid = false;
         } else {
             _visa.setError(null);
-        }
-        if (pass.isEmpty()) {
-            _pass.setError("Input password");
-            valid = false;
-        } else {
-            _location.setError(null);
         }
 
         return valid;
