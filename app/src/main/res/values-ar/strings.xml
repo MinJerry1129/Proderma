@@ -18,6 +18,7 @@
     <string name="home_setting">إعدادات</string>
     <string name="home_training">التدريب</string>
     <string name="product_price">السعر($):</string>
+    <string name="event_interest">Interest</string>
     <string name="search_product">البحث</string>
     <string name="product_quality">العدد:</string>
     <string name="product_more_info">مزيد من المعلومات</string>

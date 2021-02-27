@@ -36,6 +36,10 @@ public class AllEventAdapter extends ArrayAdapter<Event> {
         Ion.with(mContext).load(currentEvent.getmImage()).intoImageView(clinic_image);//
         TextView title = (TextView) listItem.findViewById(R.id.txt_eventTitle);
         title.setText(currentEvent.getmTitle());
+        TextView dateTime = (TextView) listItem.findViewById(R.id.txt_datetime);
+        dateTime.setText(currentEvent.getmDateTime());
+        TextView eventlocation = (TextView) listItem.findViewById(R.id.txt_location);
+        eventlocation.setText(currentEvent.getmLocation());
         TextView description = (TextView) listItem.findViewById(R.id.txt_description);
         description.setText(currentEvent.getmDescription());
         return listItem;

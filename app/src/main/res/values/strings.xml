@@ -24,6 +24,9 @@
     <string name="product_extra">FOC:</string>
     <string name="product_information">Informations:</string>
     <string name="product_request">Request Product</string>
+
+    <string name="event_interest">Interest</string>
+
     <string name="train_video">Video</string>
     <string name="train_pdf">P D F</string>
     <string name="lang_english">English</string>

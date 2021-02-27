@@ -5,12 +5,16 @@ import com.mobiledevteam.proderma.Common;
 public class Event {
     private String mId;
     private String mTitle;
+    private String mDateTime;
+    private String mLocation;
     private String mDescription;
     private String mImage;
 
-    public Event(String id,String title,String description,String image){
+    public Event(String id,String title,String dateTime,String elocation,String description,String image){
         mId=id;
         mTitle=title;
+        mDateTime = dateTime;
+        mLocation = elocation;
         mDescription=description;
         mImage=image;
 
@@ -21,6 +25,10 @@ public class Event {
     }
 
     public String getmTitle() {return mTitle;}
+
+    public String getmDateTime() {return mDateTime;}
+
+    public String getmLocation() {return mLocation;}
 
     public String getmImage() {
         return Common.getInstance().getBaseURL()+mImage;

@@ -40,11 +40,23 @@
                 android:gravity="center"
                 android:textStyle="bold"/>
             <TextView
+                android:id="@+id/txt_datetime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Koramangala,Banglore"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/txt_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Koramangala,Banglore"
+                android:textStyle="bold"/>
+            <TextView
                 android:id="@+id/txt_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Koramangala,Banglore"
-                android:maxLines="5"
+                android:maxLines="2"
                 android:textStyle="bold"/>
         </LinearLayout>
     </LinearLayout>
