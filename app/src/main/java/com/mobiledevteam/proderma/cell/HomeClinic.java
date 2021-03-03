@@ -10,16 +10,18 @@ public class HomeClinic {
     private String mImage;
     private String mDescription;
     private String mPhone;
+    private String mWhatsapp;
     private String mDoctor;
     private LatLng mLatLng;
 
-    public HomeClinic(String id,String name,String location,String image,String description, String phone, String doctor, LatLng mlatlng){
+    public HomeClinic(String id,String name,String location,String image,String description, String phone, String whatsapp, String doctor, LatLng mlatlng){
         mId=id;
         mName=name;
         mLocation = location;
         mImage=image;
         mDescription=description;
         mPhone = phone;
+        mWhatsapp = whatsapp;
         mDoctor = doctor;
         mLatLng = mlatlng;
     }
@@ -44,6 +46,7 @@ public class HomeClinic {
 
     public String getmDoctor() {return mDoctor;}
     public String getmPhone() {return mPhone;}
+    public String getmWhatsapp() {return mWhatsapp;}
 
     public LatLng getmLatLng() {return mLatLng;}
 }

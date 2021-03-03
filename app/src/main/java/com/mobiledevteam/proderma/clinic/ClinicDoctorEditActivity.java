@@ -295,12 +295,12 @@ public class ClinicDoctorEditActivity extends AppCompatActivity {
         } else {
             _docName.setError(null);
         }
-        if (age.isEmpty()) {
-            _docAge.setError("Input Doctor age");
-            valid = false;
-        } else {
-            _docAge.setError(null);
-        }
+//        if (age.isEmpty()) {
+//            _docAge.setError("Input Doctor age");
+//            valid = false;
+//        } else {
+//            _docAge.setError(null);
+//        }
         return valid;
     }
 

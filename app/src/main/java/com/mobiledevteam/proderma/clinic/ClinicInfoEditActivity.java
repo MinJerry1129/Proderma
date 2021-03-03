@@ -50,6 +50,7 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
     private EditText _clinicName;
     private EditText _clinicLocation;
     private EditText _clinicPhone;
+    private EditText _clinicWhatsapp;
     private EditText _clinicInfo;
     private Button _btnUpdate;
     private String mClinicID;
@@ -79,6 +80,7 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
         _clinicName = (EditText)findViewById(R.id.input_clinicname);
         _clinicLocation = (EditText)findViewById(R.id.input_cliniclocation);
         _clinicPhone = (EditText)findViewById(R.id.input_clinicphone);
+        _clinicWhatsapp = (EditText)findViewById(R.id.input_whatsapp);
         _clinicInfo = (EditText)findViewById(R.id.input_clinicinfo);
         _btnUpdate = (Button) findViewById(R.id.btn_update);
         setReady();
@@ -147,6 +149,7 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
         String clinicname  = _clinicName.getText().toString();
         String cliniclocation  = _clinicLocation.getText().toString();
         String clinicphone  = _clinicPhone.getText().toString();
+        String clinicwhatsapp  = _clinicWhatsapp.getText().toString();
         String clinicinfo  = _clinicInfo.getText().toString();
 
 
@@ -157,6 +160,7 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
         json.addProperty("latitude", String.valueOf(my_location.latitude));
         json.addProperty("longitude", String.valueOf(my_location.longitude));
         json.addProperty("phone", clinicphone);
+        json.addProperty("whatsapp", clinicwhatsapp);
         json.addProperty("info", clinicinfo);
         json.addProperty("isChange", mSelImg);
         json.addProperty("photo",clinicImage);
@@ -174,7 +178,6 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
                             if (result != null) {
                                 Toast.makeText(getBaseContext(), "Update Success.", Toast.LENGTH_LONG).show();
                             } else {
-
                             }
                         }
                     });
@@ -208,6 +211,7 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
                                 String id = doctor_object.get("id").getAsString();
                                 String clinicname = doctor_object.get("clinicname").getAsString();
                                 String mobile = doctor_object.get("mobile").getAsString();
+                                String whatsapp = doctor_object.get("whatsapp").getAsString();
                                 String location = doctor_object.get("location").getAsString();
                                 String info = doctor_object.get("information").getAsString();
                                 String image = doctor_object.get("photo").getAsString();
@@ -216,6 +220,7 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
                                 my_location = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
                                 _clinicName.setText(clinicname);
                                 _clinicPhone.setText(mobile);
+                                _clinicWhatsapp.setText(whatsapp);
                                 _clinicLocation.setText(location);
                                 _clinicInfo.setText(info);
                                 Ion.with(getBaseContext()).load(Common.getInstance().getBaseURL() + image).intoImageView(_imgClinic);
@@ -257,6 +262,7 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
         String name = _clinicName.getText().toString();
         String location = _clinicLocation.getText().toString();
         String phone = _clinicPhone.getText().toString();
+        String whatsapp = _clinicWhatsapp.getText().toString();
         if (name.isEmpty()) {
             _clinicName.setError("Input clinic name");
             valid = false;
@@ -274,6 +280,12 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
             valid = false;
         } else {
             _clinicPhone.setError(null);
+        }
+        if (whatsapp.isEmpty()) {
+            _clinicWhatsapp.setError("Input phonenumber");
+            valid = false;
+        } else {
+            _clinicWhatsapp.setError(null);
         }
         return valid;
     }

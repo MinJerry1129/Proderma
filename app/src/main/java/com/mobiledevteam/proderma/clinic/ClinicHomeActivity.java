@@ -51,6 +51,7 @@ public class ClinicHomeActivity extends AppCompatActivity {
     private TextView _clinicname;
     private TextView _cliniclocation;
     private TextView _clinicphone;
+    private TextView _clinicwhatsapp;
     private TextView _clinicdescription;
     private ImageView _clinicimg;
     private ImageView _imgPhoto;
@@ -91,6 +92,7 @@ public class ClinicHomeActivity extends AppCompatActivity {
         _clinicname = (TextView)findViewById(R.id.txt_clinicname);
         _cliniclocation = (TextView)findViewById(R.id.txt_cliniclocation);
         _clinicphone = (TextView)findViewById(R.id.txt_phone);
+        _clinicwhatsapp = (TextView)findViewById(R.id.txt_whatsapp);
         _clinicdescription = (TextView)findViewById(R.id.txt_description);
         _clinicimg = (ImageView) findViewById(R.id.img_clinic);
 
@@ -165,6 +167,7 @@ public class ClinicHomeActivity extends AppCompatActivity {
         _clinicname.setText(mOneClinic.getmName());
         _cliniclocation.setText(mOneClinic.getmLocation());
         _clinicphone.setText(mOneClinic.getmPhone());
+        _clinicwhatsapp.setText(mOneClinic.getmWhatsapp());
         _clinicdescription.setText(mOneClinic.getmDescription());
         Ion.with(getBaseContext()).load(mOneClinic.getmImage()).intoImageView(_clinicimg);
     }
@@ -199,11 +202,12 @@ public class ClinicHomeActivity extends AppCompatActivity {
                                 String image = clinics_object.get("photo").getAsString();
                                 String description = clinics_object.get("information").getAsString();
                                 String phone = clinics_object.get("mobile").getAsString();
+                                String whatsapp = clinics_object.get("whatsapp").getAsString();
                                 String latitude = clinics_object.get("latitude").getAsString();
                                 String longitude = clinics_object.get("longitude").getAsString();
                                 LatLng clinic_location = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
                                 String doctor = "0";
-                                mOneClinic = new HomeClinic(id,name,location,image,description,phone,doctor,clinic_location);
+                                mOneClinic = new HomeClinic(id,name,location,image,description,phone,whatsapp,doctor,clinic_location);
 
                                 for(JsonElement doctorElement : doctors_array){
                                     JsonObject theDoctor = doctorElement.getAsJsonObject();

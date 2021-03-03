@@ -54,7 +54,7 @@
     <string name="clinic_add_doctor_btn">اضافة</string>
     <string name="clinic_update_doctor_btn">تعديل</string>
     <string name="clinic_delete_doctor_btn">حذف</string>
-    <string name="clinic_doctor_name">اسم</string>
+    <string name="clinic_doctor_name">اسم:</string>
     <string name="clinic_doctor_age">العمر</string>
     <string name="clinic_doctor_info">تخصص</string>
     <string name="chat_message">اكتب الرسالة</string>

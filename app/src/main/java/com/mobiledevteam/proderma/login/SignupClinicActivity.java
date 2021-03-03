@@ -57,6 +57,7 @@ public class SignupClinicActivity extends AppCompatActivity {
     private EditText _location;
     private EditText _info;
     private EditText _visa;
+    private EditText _whatsapp;
 
     private ImageView _imgClinic;
     private TextView _txtSelImage;
@@ -113,6 +114,7 @@ public class SignupClinicActivity extends AppCompatActivity {
         _location = (EditText)findViewById(R.id.input_cliniclocation);
         _info = (EditText)findViewById(R.id.input_clinicinfo);
         _visa = (EditText)findViewById(R.id.input_visacode);
+        _whatsapp = (EditText)findViewById(R.id.input_whatsapp);
         _imgClinic = (ImageView) findViewById(R.id.img_clinic);
         _txtSelImage = (TextView) findViewById(R.id.txt_selImage);
         _singup = (Button) findViewById(R.id.btn_signup);
@@ -168,6 +170,7 @@ public class SignupClinicActivity extends AppCompatActivity {
         String encodedImage = Base64.encodeToString(b, Base64.DEFAULT);
         String cliniclocation  = _location.getText().toString();
         String clinicinfo  = _info.getText().toString();
+        String whatsapp  = _whatsapp.getText().toString();
         String visacode  = _visa.getText().toString();
         String clinicImage = encodedImage;
 
@@ -184,6 +187,7 @@ public class SignupClinicActivity extends AppCompatActivity {
         json.addProperty("location",cliniclocation);
         json.addProperty("info",clinicinfo);
         json.addProperty("visacode",visacode);
+        json.addProperty("whatsapp",whatsapp);
         json.addProperty("photo",clinicImage);
         json.addProperty("latitude",String.valueOf(my_location.latitude));
         json.addProperty("longitude",String.valueOf(my_location.longitude));
@@ -251,6 +255,13 @@ public class SignupClinicActivity extends AppCompatActivity {
         boolean valid = true;
         String location = _location.getText().toString();
         String visa = _visa.getText().toString();
+        String whataspp = _whatsapp.getText().toString();
+        if (whataspp.isEmpty()) {
+            _whatsapp.setError("Input whatsappnumber");
+            valid = false;
+        } else {
+            _whatsapp.setError(null);
+        }
         if (location.isEmpty()) {
             _location.setError("Input Address");
             valid = false;

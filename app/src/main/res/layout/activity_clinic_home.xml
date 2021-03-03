@@ -116,7 +116,7 @@
                         android:layout_gravity="center">
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_30sdp"
+                            android:layout_height="@dimen/_25sdp"
                             android:gravity="center">
                             <ImageView
                                 android:layout_width="@dimen/_20sdp"
@@ -132,7 +132,7 @@
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="@dimen/_30sdp"
+                            android:layout_height="@dimen/_25sdp"
                             android:gravity="center">
                             <ImageView
                                 android:layout_width="@dimen/_20sdp"
@@ -143,6 +143,23 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="+1234567890"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_9sdp"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_25sdp"
+                            android:gravity="center">
+                            <ImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/whatsapp"/>
+                            <TextView
+                                android:id="@+id/txt_whatsapp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="+1234567890"
+                                android:paddingStart="@dimen/_5sdp"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_9sdp"/>
                         </LinearLayout>

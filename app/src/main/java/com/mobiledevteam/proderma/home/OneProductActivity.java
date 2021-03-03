@@ -313,11 +313,12 @@ public class OneProductActivity extends AppCompatActivity {
                                     String image = theclinic.get("photo").getAsString();
                                     String description = theclinic.get("information").getAsString();
                                     String phone = theclinic.get("mobile").getAsString();
+                                    String whatsapp = theclinic.get("whatsapp").getAsString();
                                     String latitude = theclinic.get("latitude").getAsString();
                                     String longitude = theclinic.get("longitude").getAsString();
                                     LatLng clinic_location = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
                                     String doctor = "0";
-                                    mClinic.add(new HomeClinic(id,name,location,image,description,phone,doctor,clinic_location));
+                                    mClinic.add(new HomeClinic(id,name,location,image,description,phone,whatsapp,doctor,clinic_location));
                                 }
 
                                 String id = product_object.get("id").getAsString();

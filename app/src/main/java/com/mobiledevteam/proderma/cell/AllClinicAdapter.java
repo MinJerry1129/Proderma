@@ -43,6 +43,8 @@ public class AllClinicAdapter extends ArrayAdapter<HomeClinic> {
         txtDoctor.setText(currentClinic.getmDoctor());
         TextView txtPhone = (TextView) listItem.findViewById(R.id.txt_phone);
         txtPhone.setText(currentClinic.getmPhone());
+        TextView whatsapp = (TextView) listItem.findViewById(R.id.txt_whatsapp);
+        whatsapp.setText(currentClinic.getmWhatsapp());
         return listItem;
     }
 }

@@ -95,7 +95,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/layout_background_major">
+                android:background="@drawable/layout_background_major"
+                android:visibility="gone">
 
                 <EditText
                     android:id="@+id/input_doctorage"
@@ -107,6 +108,7 @@
                     android:layout_marginBottom="@dimen/_1sdp"
                     android:inputType="number"
                     android:background="#00ffffff"
+                    android:text="25"
                     android:hint="@string/clinic_doctor_age"
                     android:textColor="#000" />
 

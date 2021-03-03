@@ -50,7 +50,7 @@
                             android:layout_height="wrap_content"
                             android:text="Product"
                             android:textAlignment="center"
-                            android:textSize="@dimen/_12sdp"
+                            android:textSize="@dimen/_10sdp"
                             android:textColor="@color/white"
                             android:textStyle="bold"
                             android:layout_marginStart="@dimen/_5sdp"
@@ -58,7 +58,6 @@
                             android:layout_marginBottom="@dimen/_5sdp"
                             android:gravity="center_horizontal"/>
                     </LinearLayout>
-
                 </LinearLayout>
 
             </RelativeLayout>
