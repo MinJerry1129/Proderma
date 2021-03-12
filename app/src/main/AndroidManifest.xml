@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proderma"
         android:usesCleartextTraffic="true">
-        <activity android:name=".clinic.ClinicOfferAddActivity"></activity>
+        <activity android:name=".clinic.ClinicOfferEditActivity"></activity>
+        <activity android:name=".clinic.ClinicOfferAddActivity" />
         <activity android:name=".event.OneEventActivity" />
         <activity android:name=".clinic.ClinicImageViewActivity" />
         <activity

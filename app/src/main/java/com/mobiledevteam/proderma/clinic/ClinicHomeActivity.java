@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,6 +44,7 @@ import com.mobiledevteam.proderma.cell.HomeClinic;
 import com.mobiledevteam.proderma.cell.ImageSliderPhoto;
 import com.mobiledevteam.proderma.cell.PageViewAdapter;
 import com.mobiledevteam.proderma.home.HomeActivity;
+import com.mobiledevteam.proderma.home.OneClinicActivity;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -149,6 +151,14 @@ public class ClinicHomeActivity extends AppCompatActivity {
                 finish();
             }
         });
+        _offerGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), ClinicOfferEditActivity.class).putExtra("offer_id", mOffer.get(position).getmId());
+                startActivity(intent);
+            }
+        });
+
         _clinicSlider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -253,9 +263,8 @@ public class ClinicHomeActivity extends AppCompatActivity {
                                     String offer_title = theOffer.get("title").getAsString();
                                     String offer_info = theOffer.get("description").getAsString();
                                     String offer_status = theOffer.get("status").getAsString();
-                                    if(offer_status.equals("enable")){
-                                        mOffer.add(new ClinicOffer(offer_id, offer_title, offer_info, offer_status));
-                                    }
+                                    mOffer.add(new ClinicOffer(offer_id, offer_title, offer_info, offer_status));
+
                                 }
                                 for(JsonElement imageElement : clinics_images){
                                     JsonObject theimage = imageElement.getAsJsonObject();

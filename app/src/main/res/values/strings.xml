@@ -53,6 +53,7 @@
     <string name="clinic_update">Update</string>
     <string name="clinic_new_doctor">Add Doctor</string>
     <string name="clinic_new_offer">Add Offer</string>
+    <string name="clinic_edit_offer">Edit Offer Info</string>
     <string name="clinic_edit_doctor">Edit Doctor Info</string>
     <string name="clinic_add_doctor_btn">Add</string>
     <string name="clinic_update_doctor_btn">Update</string>

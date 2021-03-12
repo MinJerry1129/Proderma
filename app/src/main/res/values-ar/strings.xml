@@ -51,6 +51,7 @@
     <string name="clinic_update">Update</string>
     <string name="clinic_new_doctor">دكتور جديد</string>
     <string name="clinic_new_offer">أضف العرض</string>
+    <string name="clinic_edit_offer">تحرير معلومات العرض</string>
     <string name="clinic_edit_doctor">معلومات الدكتور</string>
     <string name="clinic_add_doctor_btn">اضافة</string>
     <string name="clinic_update_doctor_btn">تعديل</string>

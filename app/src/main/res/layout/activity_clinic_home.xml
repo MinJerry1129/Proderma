@@ -267,10 +267,9 @@
                 <GridView
                     android:id="@+id/grid_allOffer"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_200sdp"
+                    android:layout_height="@dimen/_400sdp"
                     android:layout_marginBottom="@dimen/_30sdp"
                     android:numColumns="1"/>
-
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
