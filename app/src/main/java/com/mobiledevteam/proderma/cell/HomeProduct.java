@@ -4,15 +4,18 @@ import com.mobiledevteam.proderma.Common;
 
 public class HomeProduct {
     private String mId;
+    private String mBrandId;
     private String mName;
     private String mPrice;
     private String mImage;
     private String mDescription;
 
-    public HomeProduct(String id,String name,String price,String image,String description){
+    public HomeProduct(String id,String brandid,String name,String price,String image,String description){
         mId=id;
+        mBrandId = brandid;
         mName=name;
         mPrice = price;
+
         String currentString = image;
         String[] separated = currentString.split("_split_");
         mImage=separated[0];
@@ -22,6 +25,8 @@ public class HomeProduct {
     public String getmId() {
         return mId;
     }
+
+    public String getmBrandId() { return mBrandId; }
 
     public String getmPrice() { return mPrice;}
 

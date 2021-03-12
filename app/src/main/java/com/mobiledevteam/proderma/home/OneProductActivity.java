@@ -321,13 +321,20 @@ public class OneProductActivity extends AppCompatActivity {
                                     mClinic.add(new HomeClinic(id,name,location,image,description,phone,whatsapp,doctor,clinic_location));
                                 }
 
+                                String selLang = Common.getInstance().getSelLang();
                                 String id = product_object.get("id").getAsString();
+                                String brandid = product_object.get("brandid").getAsString();
                                 String name = product_object.get("name").getAsString();
                                 String price = product_object.get("price").getAsString();
                                 String info = product_object.get("information").getAsString();
                                 String image = product_object.get("photo").getAsString();
+                                if(selLang.equals("ar")){
+                                    name = product_object.get("namear").getAsString();
+                                    info = product_object.get("informationar").getAsString();
+                                }
                                 mPercent = product_object.get("percent").getAsString();
-                                mOneProduct = new HomeProduct(id,name,price,image,info);
+                                mOneProduct = new HomeProduct(id,brandid,name,price,image,info);
+
                                 for(JsonElement imageElement : product_images){
                                     JsonObject theimage = imageElement.getAsJsonObject();
                                     String image_id = theimage.get("id").getAsString();

@@ -22,7 +22,9 @@ import android.view.animation.AnimationSet;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.JsonObject;
+import com.mobiledevteam.proderma.Utils.GifImageView;
 import com.mobiledevteam.proderma.home.HomeActivity;
 
 import java.io.BufferedReader;
@@ -37,6 +39,7 @@ import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_LOCATION = 111;
     private ImageView _imageView;
+    GifImageView gifImageView;
     private String sel_lang = "no";
 
     @Override
@@ -44,20 +47,26 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         _imageView = (ImageView)findViewById(R.id.img_logo);
+//        gifImageView = (GifImageView) findViewById(R.id.GifImageView);
+//        gifImageView.setGifImageResource(R.drawable.splash);
         readFile();
-        Animation fadeIn = new AlphaAnimation(0, 1);
-        fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
-        fadeIn.setDuration(5000);
 
-        Animation fadeOut = new AlphaAnimation(1, 0);
-        fadeOut.setInterpolator(new AccelerateInterpolator()); //and this
-        fadeOut.setStartOffset(5000);
-        fadeOut.setDuration(5000);
+        Glide.with(getBaseContext())
+        .load(R.drawable.splash)
+        .into(_imageView);
+//        Animation fadeIn = new AlphaAnimation(0, 1);
+//        fadeIn.setInterpolator(new DecelerateInterpolator()); //add this
+//        fadeIn.setDuration(5000);
+//
+//        Animation fadeOut = new AlphaAnimation(1, 0);
+//        fadeOut.setInterpolator(new AccelerateInterpolator()); //and this
+//        fadeOut.setStartOffset(5000);
+//        fadeOut.setDuration(5000);
 
-        AnimationSet animation = new AnimationSet(false); //change to false
-        animation.addAnimation(fadeIn);
-        animation.addAnimation(fadeOut);
-        _imageView.setAnimation(animation);
+//        AnimationSet animation = new AnimationSet(false); //change to false
+//        animation.addAnimation(fadeIn);
+//        animation.addAnimation(fadeOut);
+//        _imageView.setAnimation(animation);
 
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -70,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     moveToLogin();
                 }
-            },9000);
+            },3500);
         }
 
 //        Handler handler=new Handler();

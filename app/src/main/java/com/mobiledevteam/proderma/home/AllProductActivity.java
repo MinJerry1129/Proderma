@@ -101,14 +101,20 @@ public class AllProductActivity extends AppCompatActivity {
 //                            Log.d("result::", result.toString());
                             if (result != null) {
                                 JsonArray products_array = result.get("productsInfo").getAsJsonArray();
+                                String selLang = Common.getInstance().getSelLang();
                                 for(JsonElement productElement : products_array){
                                     JsonObject theproduct = productElement.getAsJsonObject();
                                     String id = theproduct.get("id").getAsString();
+                                    String brandid = theproduct.get("brandid").getAsString();
                                     String name = theproduct.get("name").getAsString();
                                     String price = theproduct.get("price").getAsString();
                                     String image = theproduct.get("photo").getAsString();
                                     String description = theproduct.get("information").getAsString();
-                                    mAllProductList.add(new HomeProduct(id,name,price,image,description));
+                                    if(selLang.equals("ar")){
+                                        name = theproduct.get("namear").getAsString();
+                                        description = theproduct.get("informationar").getAsString();
+                                    }
+                                    mAllProductList.add(new HomeProduct(id,brandid,name,price,image,description));
                                 }
                                 mTempProductList=new ArrayList<HomeProduct>(mAllProductList);
                                 initView();
