@@ -170,7 +170,7 @@ public class ClinicDoctorAddActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(ClinicDoctorAddActivity.this, ClinicHomeActivity.class);//LoginActivity.class);
+        Intent intent = new Intent(ClinicDoctorAddActivity.this, ClinicHomeActivity.class);
         startActivity(intent);
         finish();
     }

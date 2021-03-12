@@ -13,6 +13,8 @@ import android.media.Image;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,8 +32,11 @@ import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.mobiledevteam.proderma.Common;
 import com.mobiledevteam.proderma.R;
+import com.mobiledevteam.proderma.cell.AllClinicAdapter;
 import com.mobiledevteam.proderma.cell.ClinicDoctor;
 import com.mobiledevteam.proderma.cell.ClinicDoctorAdapter;
+import com.mobiledevteam.proderma.cell.ClinicOffer;
+import com.mobiledevteam.proderma.cell.ClinicOfferAdapter;
 import com.mobiledevteam.proderma.cell.HomeClinic;
 import com.mobiledevteam.proderma.cell.HomeClinicAdapter;
 import com.mobiledevteam.proderma.cell.HomeProduct;
@@ -43,6 +48,7 @@ import java.util.ArrayList;
 public class OneClinicActivity extends AppCompatActivity {
     private ViewPager _clinicSlider;
     private RecyclerView _doctorRecycle;
+    private GridView _offerGridView;
     private TextView _clinicname;
     private TextView _cliniclocation;
     private TextView _clinicphone;
@@ -51,6 +57,7 @@ public class OneClinicActivity extends AppCompatActivity {
     private ImageView _clinicimg;
 
     private ArrayList<ClinicDoctor> mDoctor=new ArrayList<>();
+    private ArrayList<ClinicOffer> mOffer=new ArrayList<>();
     private ArrayList<String> mAllProductList = new ArrayList<>();
     private String mClinicID;
     private HomeClinic mOneClinic;
@@ -79,6 +86,7 @@ public class OneClinicActivity extends AppCompatActivity {
         mClinicID = getIntent().getStringExtra("clinic_id");
         _clinicSlider = (ViewPager) findViewById(R.id.slider_clinic);
         _doctorRecycle = (RecyclerView)findViewById(R.id.recycler_doctor);
+        _offerGridView = (GridView)findViewById(R.id.grid_allOffer);
         _clinicname = (TextView)findViewById(R.id.txt_clinicname);
         _cliniclocation = (TextView)findViewById(R.id.txt_cliniclocation);
         _clinicphone = (TextView)findViewById(R.id.txt_phone);
@@ -92,6 +100,8 @@ public class OneClinicActivity extends AppCompatActivity {
     private void setReady(){
         LinearLayoutManager layoutManager_doctor = new LinearLayoutManager(getBaseContext(), LinearLayoutManager.HORIZONTAL, false);
         _doctorRecycle.setLayoutManager(layoutManager_doctor);
+        _doctorRecycle.setVisibility(View.GONE);
+        _offerGridView.setVisibility(View.GONE);
         _clinicSlider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -118,11 +128,19 @@ public class OneClinicActivity extends AppCompatActivity {
     }
     private void initView(){
         setInfo();
+        if(mDoctor.size()>0){
+            _doctorRecycle.setVisibility(View.VISIBLE);
+        }
+        if(mOffer.size()>0){
+            _offerGridView.setVisibility(View.VISIBLE);
+        }
         ClinicDoctorAdapter adapter_doctor = new ClinicDoctorAdapter(getBaseContext(), mDoctor);
         _doctorRecycle.setAdapter(adapter_doctor);
         PageViewAdapter adapter = new PageViewAdapter(this, mAllProductList);
         _clinicSlider.setAdapter(adapter);
         timerHandler.postDelayed(timerRunnable, 0);
+        ClinicOfferAdapter adapter_clinic = new ClinicOfferAdapter(getBaseContext(), mOffer);
+        _offerGridView.setAdapter(adapter_clinic);
     }
     private void setInfo(){
         _clinicname.setText(mOneClinic.getmName());
@@ -156,6 +174,7 @@ public class OneClinicActivity extends AppCompatActivity {
                             if (result != null) {
                                 JsonObject clinics_object = result.getAsJsonObject("clinicInfo");
                                 JsonArray doctors_array = result.get("doctorsInfo").getAsJsonArray();
+                                JsonArray offers_array = result.get("clinicOffer").getAsJsonArray();
                                 JsonArray clinics_images = result.get("clinicImages").getAsJsonArray();
                                 String id = clinics_object.get("id").getAsString();
                                 String name = clinics_object.get("clinicname").getAsString();
@@ -182,6 +201,17 @@ public class OneClinicActivity extends AppCompatActivity {
                                         mDoctor.add(new ClinicDoctor(doctor_id, doctor_name, doctor_age, doctor_info, doctor_image,doctor_status));
                                     }
                                 }
+                                for(JsonElement offerElement : offers_array){
+                                    JsonObject theOffer = offerElement.getAsJsonObject();
+                                    String offer_id = theOffer.get("id").getAsString();
+                                    String offer_title = theOffer.get("title").getAsString();
+                                    String offer_info = theOffer.get("description").getAsString();
+                                    String offer_status = theOffer.get("status").getAsString();
+                                    if(offer_status.equals("enable")){
+                                        mOffer.add(new ClinicOffer(offer_id, offer_title, offer_info, offer_status));
+                                    }
+                                }
+
                                 for(JsonElement imageElement : clinics_images){
                                     JsonObject theimage = imageElement.getAsJsonObject();
                                     String image_id = theimage.get("id").getAsString();

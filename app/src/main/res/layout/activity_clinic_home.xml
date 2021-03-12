@@ -217,22 +217,60 @@
 
                     </ScrollView>
                 </LinearLayout>
-                <ImageView
-                    android:id="@+id/img_editdoctor"
-                    android:layout_width="@dimen/_20sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:src="@drawable/pen"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_2sdp"
-                    android:layout_gravity="end|center"/>
+                    android:gravity="end|center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="@string/clinic_new_doctor"/>
+                    <ImageView
+                        android:id="@+id/img_editdoctor"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/pen"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"/>
+                </LinearLayout>
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recycler_doctor"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_180sdp"
                     android:orientation="horizontal"
                     android:layout_marginBottom="@dimen/_30sdp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_2sdp"
+                    android:gravity="end|center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="@string/clinic_new_offer"/>
+                    <ImageView
+                        android:id="@+id/img_editOffer"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/pen"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"/>
+                </LinearLayout>
+
+                <GridView
+                    android:id="@+id/grid_allOffer"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200sdp"
+                    android:layout_marginBottom="@dimen/_30sdp"
+                    android:numColumns="1"/>
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
