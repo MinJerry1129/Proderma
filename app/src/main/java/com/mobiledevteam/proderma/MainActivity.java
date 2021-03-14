@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                 public void run() {
                     moveToLogin();
                 }
-            },3500);
+            },4000);
         }
 
 //        Handler handler=new Handler();

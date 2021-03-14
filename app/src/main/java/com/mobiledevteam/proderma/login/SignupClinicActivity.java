@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.esafirm.imagepicker.features.ImagePicker;
+import com.esafirm.imagepicker.features.ReturnMode;
 import com.esafirm.imagepicker.model.Image;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -226,7 +227,7 @@ public class SignupClinicActivity extends AppCompatActivity {
         }
     }
     public void onPickImage() {
-        ImagePicker.create(this).single().includeVideo(false).start();
+        ImagePicker.create(this).returnMode(ReturnMode.ALL).folderMode(true).single().includeVideo(false).start();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
