@@ -71,7 +71,7 @@
             <EditText android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:textColor="#000"
                 android:background="#00ffffff"
                 android:layout_marginStart="@dimen/_15sdp"

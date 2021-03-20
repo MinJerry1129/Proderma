@@ -15,8 +15,10 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -25,8 +27,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.esafirm.imagepicker.features.ImagePicker;
-import com.esafirm.imagepicker.model.Image;
+
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
@@ -40,6 +42,7 @@ import com.mobiledevteam.proderma.MainActivity;
 import com.mobiledevteam.proderma.R;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
@@ -234,7 +237,7 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
         }
     }
     public void onPickImage() {
-        ImagePicker.create(this).single().includeVideo(false).start();
+        ImagePicker.Companion.with(this).saveDir(Environment.getExternalStorageDirectory()).cropSquare().maxResultSize(400,400).start();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -244,15 +247,13 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
                 _clinicLocation.setText(place.getAddress());
                 my_location = place.getLatLng();
             }
-        }
-        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
-            // or get a single image only
-            image = ImagePicker.getFirstImageOrNull(data);
-            if(image!=null) {
-                //imageView.setImageBitmap();
-                filePath=image.getPath();
+        }else{
+            if(resultCode == Activity.RESULT_OK){
+                Uri fileUri = data.getData();
                 mSelImg = "yes";
-                _imgClinic.setImageURI(Uri.parse(filePath));
+                _imgClinic.setImageURI(fileUri);
+                File file = ImagePicker.Companion.getFile(data);
+                filePath = ImagePicker.Companion.getFilePath(data);
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

@@ -2,14 +2,17 @@ package com.mobiledevteam.proderma.clinic;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -19,8 +22,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.esafirm.imagepicker.features.ImagePicker;
-import com.esafirm.imagepicker.model.Image;
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
@@ -28,6 +30,7 @@ import com.mobiledevteam.proderma.Common;
 import com.mobiledevteam.proderma.R;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 public class ClinicDoctorAddActivity extends AppCompatActivity {
     private ImageView _imgDoctor;
@@ -131,20 +134,17 @@ public class ClinicDoctorAddActivity extends AppCompatActivity {
         }
     }
     public void onPickImage() {
-        ImagePicker.create(this).single().includeVideo(false).start();
+        ImagePicker.Companion.with(this).saveDir(Environment.getExternalStorageDirectory()).cropSquare().maxResultSize(400,400).start();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
-            // or get a single image only
-            image = ImagePicker.getFirstImageOrNull(data);
-            if(image!=null) {
-                //imageView.setImageBitmap();
-                filePath=image.getPath();
-                mselIamge = "yes";
-                _selImg.setVisibility(View.GONE);
-                _imgDoctor.setImageURI(Uri.parse(filePath));
-            }
+        if(resultCode == Activity.RESULT_OK){
+            Uri fileUri = data.getData();
+            mselIamge = "yes";
+            _selImg.setVisibility(View.GONE);
+            _imgDoctor.setImageURI(fileUri);
+            File file = ImagePicker.Companion.getFile(data);
+            filePath = ImagePicker.Companion.getFilePath(data);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

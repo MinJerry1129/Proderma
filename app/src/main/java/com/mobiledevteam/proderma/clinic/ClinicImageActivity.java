@@ -9,8 +9,10 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -18,8 +20,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.esafirm.imagepicker.features.ImagePicker;
-import com.esafirm.imagepicker.model.Image;
+
+import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.widget.Autocomplete;
@@ -40,6 +42,7 @@ import com.mobiledevteam.proderma.cell.PageViewAdapter;
 import com.mobiledevteam.proderma.home.OneProductActivity;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.ArrayList;
 
 public class ClinicImageActivity extends AppCompatActivity {
@@ -75,17 +78,13 @@ public class ClinicImageActivity extends AppCompatActivity {
         });
     }
     public void onPickImage() {
-        ImagePicker.create(this).single().includeVideo(false).start();
+        ImagePicker.Companion.with(this).saveDir(Environment.getExternalStorageDirectory()).cropSquare().maxResultSize(400,400).start();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
-            // or get a single image only
-            image = ImagePicker.getFirstImageOrNull(data);
-            if(image!=null) {
-                filePath=image.getPath();
-                addImage();
-            }
+        if(resultCode == Activity.RESULT_OK){
+            filePath = ImagePicker.Companion.getFilePath(data);
+            addImage();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

@@ -100,13 +100,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_background_light_major">
-                    <ImageView
-                        android:id="@+id/img_clinic"
-                        android:layout_width="@dimen/_80sdp"
-                        android:layout_height="@dimen/_80sdp"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_5sdp"
-                        android:src="@drawable/clinic"
-                        android:scaleType="centerCrop"/>
+                        app:cardCornerRadius="@dimen/_10sdp">
+                        <ImageView
+                            android:id="@+id/img_clinic"
+                            android:layout_width="@dimen/_80sdp"
+                            android:layout_height="@dimen/_80sdp"
+                            android:src="@drawable/clinic"
+                            android:scaleType="centerCrop"/>
+                    </androidx.cardview.widget.CardView>
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

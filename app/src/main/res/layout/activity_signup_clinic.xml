@@ -154,7 +154,7 @@
                     android:layout_marginBottom="@dimen/_1sdp"
                     android:background="#00ffffff"
                     android:hint="@string/login_visa_code"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:textColor="#000" />
 
             </com.google.android.material.textfield.TextInputLayout>

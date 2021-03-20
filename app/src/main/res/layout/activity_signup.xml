@@ -147,6 +147,7 @@
                 android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:layout_marginStart="@dimen/_15sdp"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:layout_marginEnd="@dimen/_15sdp"
