@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){

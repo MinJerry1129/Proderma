@@ -101,7 +101,7 @@ tools:ignore="RtlCompat">
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="EventTile"
-                    android:textColor="@color/lightmajor"
+                    android:textColor="@color/major"
                     android:textStyle="bold"
                     android:textSize="@dimen/_10sdp"
                     android:textAlignment="center"/>
@@ -117,7 +117,7 @@ tools:ignore="RtlCompat">
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="EventTile"
-                    android:textColor="@color/lightmajor"
+                    android:textColor="@color/major"
                     android:textStyle="bold"
                     android:textSize="@dimen/_10sdp"
                     android:textAlignment="center"/>
@@ -142,7 +142,7 @@ tools:ignore="RtlCompat">
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:text="@string/product_information"
-                        android:textColor="#e8732d"
+                        android:textColor="@color/major"
                         android:textSize="15dp"/>
 
                 </LinearLayout>

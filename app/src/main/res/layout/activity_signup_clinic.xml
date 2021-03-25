@@ -45,7 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:background="@color/lightmajor"/>
+                    android:background="@color/black"/>
                 <TextView
                     android:id="@+id/txt_selImage"
                     android:layout_width="match_parent"
@@ -54,7 +54,7 @@
                     android:textAlignment="center"
                     android:gravity="center"
                     android:textStyle="bold"
-                    android:textColor="@color/major"
+                    android:textColor="@color/white"
                     />
             </FrameLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

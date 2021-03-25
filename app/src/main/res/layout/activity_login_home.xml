@@ -14,14 +14,6 @@
         android:layout_marginEnd="@dimen/_20sdp"
         android:orientation="vertical"
         android:gravity="center">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/_30sdp"
-            android:text="Welcome Proderma"
-            android:maxLines="1"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
         <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

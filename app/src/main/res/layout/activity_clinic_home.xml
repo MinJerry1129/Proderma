@@ -99,7 +99,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_background_light_major">
+                    android:background="@drawable/layout_background_black">
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -190,7 +190,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:text="@string/product_information"
-                            android:textColor="#e8732d"
+                            android:textColor="@color/major"
                             android:textSize="15dp"/>
 
                     </LinearLayout>

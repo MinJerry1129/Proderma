@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="25dp"
                 android:text="Koramangala,Banglore"
-                android:textColor="@color/lightmajor"
+                android:textColor="@color/major"
                 android:gravity="center"
                 android:textStyle="bold"/>
             <LinearLayout
@@ -79,7 +79,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="+1234567890"
-                    android:textColor="@color/lightmajor"
+                    android:textColor="@color/major"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:textStyle="bold"/>
             </LinearLayout>
@@ -97,7 +97,7 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="+1234567890"
-                    android:textColor="@color/lightmajor"
+                    android:textColor="@color/major"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:textStyle="bold"/>
             </LinearLayout>

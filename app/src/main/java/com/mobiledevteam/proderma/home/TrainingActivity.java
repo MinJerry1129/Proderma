@@ -62,6 +62,8 @@ public class TrainingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 _pdf.setBackgroundResource(R.drawable.button_background_light_major);
                 _video.setBackgroundResource(R.drawable.button_background_major);
+                _video.setTextColor(getApplication().getResources().getColor(R.color.white));
+                _pdf.setTextColor(getApplication().getResources().getColor(R.color.major));
                 sel_type= "video";
                 initView();
             }
@@ -71,6 +73,8 @@ public class TrainingActivity extends AppCompatActivity {
             public void onClick(View view) {
                 _video.setBackgroundResource(R.drawable.button_background_light_major);
                 _pdf.setBackgroundResource(R.drawable.button_background_major);
+                _pdf.setTextColor(getApplication().getResources().getColor(R.color.white));
+                _video.setTextColor(getApplication().getResources().getColor(R.color.major));
                 sel_type= "pdf";
                 initView();
             }
