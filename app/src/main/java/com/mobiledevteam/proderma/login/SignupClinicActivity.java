@@ -231,7 +231,7 @@ public class SignupClinicActivity extends AppCompatActivity {
     public void onPickImage() {
 //        ImagePicker.create(this).returnMode(ReturnMode.ALL).folderMode(true).single().includeVideo(false).start();
 //        ImagePicker.Companion.with(this).cropSquare().compress(300).maxResultSize(400,400).start(201);
-        ImagePicker.Companion.with(this).saveDir(Environment.getExternalStorageDirectory()).cropSquare().maxResultSize(400,400).start();
+        ImagePicker.Companion.with(this).saveDir(Environment.getExternalStorageDirectory()).cropSquare().maxResultSize(700,700).start();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

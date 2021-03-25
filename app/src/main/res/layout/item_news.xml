@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:ignore="RtlCompat">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/layout_background_major"
+        android:gravity="center">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_gravity="center">
+            <TextView
+                android:id="@+id/txt_newstitle"
+                android:layout_width="wrap_content"
+                android:layout_height="25dp"
+                android:text="pdf Title"
+                android:textSize="@dimen/_15sdp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/txt_newsdescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Koramangala,Banglore, Koramangala, Banglore Kor amangala, Banglore Koramangala,Banglore"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/txt_newsdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2020-03-02 12:12"
+                android:textAlignment="textEnd"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

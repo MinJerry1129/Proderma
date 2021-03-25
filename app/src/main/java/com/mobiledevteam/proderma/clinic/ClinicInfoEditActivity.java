@@ -237,7 +237,7 @@ public class ClinicInfoEditActivity extends AppCompatActivity {
         }
     }
     public void onPickImage() {
-        ImagePicker.Companion.with(this).saveDir(Environment.getExternalStorageDirectory()).cropSquare().maxResultSize(400,400).start();
+        ImagePicker.Companion.with(this).saveDir(Environment.getExternalStorageDirectory()).cropSquare().maxResultSize(700,700).start();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

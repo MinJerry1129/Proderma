@@ -12,6 +12,7 @@
     <string name="home_seeall">See All</string>
     <string name="home_product">Products</string>
     <string name="home_clinics">Clinics</string>
+    <string name="home_notification">Notification</string>
     <string name="home_clinicsimage">Clinics Images</string>
     <string name="home_events">Events and Traininig</string>
     <string name="home_history">Order History</string>

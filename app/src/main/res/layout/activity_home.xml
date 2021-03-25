@@ -69,7 +69,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="end">
+                    android:gravity="end"
+                    android:visibility="gone">
                     <TextView
                         android:id="@+id/txt_news_all"
                         android:layout_width="wrap_content"
@@ -86,6 +87,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="3">
                 <TextView
+                    android:id="@+id/txt_news"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:text="PRODERMA ME was developed in 2007 in Dubai,

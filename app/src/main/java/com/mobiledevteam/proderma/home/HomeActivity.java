@@ -24,6 +24,7 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,7 @@ import com.mobiledevteam.proderma.clinic.ClinicNormalActivity;
 import com.mobiledevteam.proderma.event.EventHomeActivity;
 import com.mobiledevteam.proderma.history.HistoryHomeActivity;
 import com.mobiledevteam.proderma.login.LoginHomeActivity;
+import com.mobiledevteam.proderma.news.NewsActivity;
 import com.mobiledevteam.proderma.setting.SettingActivity;
 
 import org.json.JSONArray;
@@ -63,6 +65,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     private TextView _txtAllNews;
     private TextView _txtAllProduct;
     private TextView _txtAllClinic;
+    private TextView _txtNews;
+    private ImageView _imgNoti;
     private ArrayList<HomeProduct> mProduct=new ArrayList<>();
     private ArrayList<HomeClinic> mClinic=new ArrayList<>();
     private String clinic_type = "normal";
@@ -101,6 +105,15 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         _txtAllNews = (TextView)findViewById(R.id.txt_news_all);
         _txtAllProduct = (TextView)findViewById(R.id.txt_product_all);
         _txtAllClinic = (TextView)findViewById(R.id.txt_clinic_all);
+        _txtNews = (TextView)findViewById(R.id.txt_news);
+        _imgNoti = (ImageView) findViewById(R.id.img_notiview);
+        _imgNoti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(HomeActivity.this, NewsActivity.class);//LoginActivity.class);
+                startActivity(intent);
+            }
+        });
         _txtAllClinic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -148,6 +161,16 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                             progressDialog.dismiss();
                             Log.d("result::", result.toString());
                             if (result != null) {
+                                if(result.get("notification").isJsonNull()){
+
+                                }else{
+                                    JsonObject newsObject = result.getAsJsonObject("notification");
+                                    if(newsObject != null){
+                                        String news = newsObject.get("description").getAsString();
+                                        _txtNews.setText(news);
+                                    }
+                                }
+
                                 JsonArray clinics_array = result.get("clinicsInfo").getAsJsonArray();
                                 for(JsonElement clinicElement : clinics_array){
                                     JsonObject theclinic = clinicElement.getAsJsonObject();
