@@ -168,7 +168,7 @@ tools:ignore="RtlCompat">
                         android:paddingLeft="10dp"
                         android:paddingRight="10dp"
                         android:textColor="@color/major"
-                        android:text="Printed evening dress with straight sleeves with black thin waistPrinted evening dress with straight sleeves with black thin waist Printed evening dress with straight sleeves with black thin waist Printed evening dress with straight sleeves with black thin waist belt and ruffled linings."
+                        android:text=""
                         android:textSize="15dp" />
 
                 </ScrollView>

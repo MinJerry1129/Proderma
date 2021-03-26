@@ -1,15 +1,20 @@
 package com.mobiledevteam.proderma.home;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -62,6 +67,8 @@ public class OneClinicActivity extends AppCompatActivity {
     private String mClinicID;
     private HomeClinic mOneClinic;
     private int slideCurrentItem=0;
+    private String cLatitude;
+    private String cLongitude;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -102,6 +109,24 @@ public class OneClinicActivity extends AppCompatActivity {
         _doctorRecycle.setLayoutManager(layoutManager_doctor);
         _doctorRecycle.setVisibility(View.GONE);
         _offerGridView.setVisibility(View.GONE);
+        _clinicwhatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendMsg();
+            }
+        });
+        _clinicphone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendPhone();
+            }
+        });
+        _cliniclocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendLocation();
+            }
+        });
         _clinicSlider.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -150,6 +175,44 @@ public class OneClinicActivity extends AppCompatActivity {
         _clinicdescription.setText(mOneClinic.getmDescription());
         Ion.with(getBaseContext()).load(mOneClinic.getmImage()).intoImageView(_clinicimg);
     }
+    private void sendMsg(){
+        boolean installed = appInstalledOrNot();
+        if (installed){
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("http://api.whatsapp.com/send?phone=" + mOneClinic.getmWhatsapp()));
+            startActivity(intent);
+        }else {
+            Toast.makeText(getBaseContext(), "Whatsapp not installed on your device", Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void sendPhone(){
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+
+        }else{
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + mOneClinic.getmPhone()));
+            startActivity(intent);
+        }
+
+    }
+    private void sendLocation(){
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/@"+ cLatitude +","+ cLongitude+",14z"));
+        startActivity(intent);
+    }
+    private boolean appInstalledOrNot(){
+        PackageManager packageManager =getPackageManager();
+        boolean app_installed;
+        try {
+            packageManager.getPackageInfo("com.whatsapp",PackageManager.GET_ACTIVITIES);
+            app_installed = true;
+        }catch (PackageManager.NameNotFoundException e){
+            app_installed = false;
+        }
+        return app_installed;
+    }
+
     private void getData(){
 
         final ProgressDialog progressDialog = new ProgressDialog(this, R.style.AppTheme_Bright_Dialog);
@@ -185,6 +248,8 @@ public class OneClinicActivity extends AppCompatActivity {
                                 String whatsapp = clinics_object.get("whatsapp").getAsString();
                                 String latitude = clinics_object.get("latitude").getAsString();
                                 String longitude = clinics_object.get("longitude").getAsString();
+                                cLatitude = latitude;
+                                cLongitude = longitude;
                                 LatLng clinic_location = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
                                 String doctor = "0";
                                 mOneClinic = new HomeClinic(id,name,location,image,description,phone,whatsapp,doctor,clinic_location);
