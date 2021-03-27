@@ -24,6 +24,7 @@
     <string name="product_more_info">More info</string>
     <string name="product_extra">FOC:</string>
     <string name="product_information">Informations:</string>
+    <string name="product_have">Clinics have product</string>
     <string name="product_request">Request Product</string>
 
     <string name="event_interest">Interest</string>

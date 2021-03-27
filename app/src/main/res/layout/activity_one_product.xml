@@ -141,7 +141,8 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
                         <TextView
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -181,7 +182,7 @@
                                 android:id="@+id/txt_buycount"
                                 android:layout_width="0dp"
                                 android:layout_height="50dp"
-                                android:layout_weight="1"
+                                android:layout_weight="2"
                                 android:text="1"
                                 android:inputType="number"
                                 android:textAlignment="center"/>
@@ -203,13 +204,24 @@
                                 android:id="@+id/txt_extracount"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_weight="1"
+                                android:layout_weight="2"
                                 android:text="0"
                                 android:textAlignment="center"/>
                         </LinearLayout>
                     </LinearLayout>
 
                 </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_request"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:textColor="@color/white"
+                    android:background="@drawable/button_background_major"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:text="@string/product_request"
+                    android:visibility="gone"/>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -261,17 +273,7 @@
                     </ScrollView>
 
                 </LinearLayout>
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btn_request"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:textColor="@color/white"
-                    android:background="@drawable/button_background_major"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
-                    android:text="@string/product_request"
-                    android:visibility="gone"/>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -282,7 +284,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Clinics have product"
+                    android:text="@string/product_have"
                     android:textColor="@color/major"
                     android:textSize="@dimen/_12sdp"/>
                 <androidx.recyclerview.widget.RecyclerView

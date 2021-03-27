@@ -126,7 +126,7 @@
                             <ImageView
                                 android:layout_width="@dimen/_20sdp"
                                 android:layout_height="@dimen/_20sdp"
-                                android:src="@drawable/ic_outline_location_on_24"/>
+                                android:src="@drawable/locationw"/>
                             <TextView
                                 android:id="@+id/txt_cliniclocation"
                                 android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                             <ImageView
                                 android:layout_width="@dimen/_20sdp"
                                 android:layout_height="@dimen/_20sdp"
-                                android:src="@drawable/ic_outline_call_24"/>
+                                android:src="@drawable/callw"/>
                             <TextView
                                 android:id="@+id/txt_phone"
                                 android:layout_width="match_parent"
@@ -158,7 +158,7 @@
                             <ImageView
                                 android:layout_width="@dimen/_20sdp"
                                 android:layout_height="@dimen/_20sdp"
-                                android:src="@drawable/whatsapp"/>
+                                android:src="@drawable/whatsappw"/>
                             <TextView
                                 android:id="@+id/txt_whatsapp"
                                 android:layout_width="match_parent"

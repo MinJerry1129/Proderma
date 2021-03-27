@@ -8,8 +8,9 @@
     tools:ignore="RtlCompat">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:paddingBottom="5dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:gravity="center">
         <androidx.cardview.widget.CardView
             android:layout_width="100dp"
@@ -42,7 +43,7 @@
             <TextView
                 android:id="@+id/txt_location"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
                 android:text="Koramangala,Banglore"
                 android:textColor="@color/major"
                 android:gravity="center"
@@ -72,7 +73,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/ic_call"/>
+                    android:src="@drawable/callb"/>
                 <TextView
                     android:id="@+id/txt_phone"
                     android:layout_width="wrap_content"
@@ -90,7 +91,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"
-                    android:src="@drawable/whatsapp"/>
+                    android:src="@drawable/whatsappb"/>
                 <TextView
                     android:id="@+id/txt_whatsapp"
                     android:layout_width="wrap_content"

@@ -12,7 +12,7 @@
     <string name="home_seeall">اظهار الكل</string>
     <string name="home_product">المنتجات</string>
     <string name="home_clinics">العيادات</string>
-    <string name="home_notification">إنذار</string>
+    <string name="home_notification">اشعارات</string>
     <string name="home_clinicsimage">صور العيادة</string>
     <string name="home_events">التدريب و الفعاليات</string>
     <string name="home_history">سجل الطلبات</string>
@@ -23,6 +23,7 @@
     <string name="search_product">البحث</string>
     <string name="product_quality">العدد:</string>
     <string name="product_more_info">مزيد من المعلومات</string>
+    <string name="product_have">العيادات لديها منتج</string>
     <string name="product_extra">مجاني:</string>
     <string name="product_information">معلومات:</string>
     <string name="product_request">طلب المنتج</string>

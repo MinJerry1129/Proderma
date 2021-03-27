@@ -130,7 +130,12 @@ public class AllProductActivity extends AppCompatActivity implements BrandAdapte
                                     }
                                     mAllProductList.add(new HomeProduct(id,brandid,name,price,image,description));
                                 }
-                                mAllBrandList.add(new Brand("0","A l l"));
+                                if(selLang.equals("ar")) {
+                                    mAllBrandList.add(new Brand("0"," A l l "));
+                                }else{
+                                    mAllBrandList.add(new Brand("0"," الكل "));
+                                }
+
                                 for(JsonElement brandElement : brands_array){
                                     JsonObject thebrand = brandElement.getAsJsonObject();
                                     String id = thebrand.get("id").getAsString();
