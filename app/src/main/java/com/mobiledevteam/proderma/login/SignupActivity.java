@@ -23,6 +23,7 @@ import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 import com.mobiledevteam.proderma.Common;
 import com.mobiledevteam.proderma.R;
+import com.mobiledevteam.proderma.home.HomeActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
@@ -139,6 +140,9 @@ public class SignupActivity extends AppCompatActivity {
                                     String status = result.get("status").getAsString();
                                     if (status.equals("ok")) {
                                         Toast.makeText(getBaseContext(),"Signup Success, Please wait accept or contact to support team", Toast.LENGTH_LONG).show();
+                                        Intent intent=new Intent(SignupActivity.this, HomeActivity.class);
+                                        startActivity(intent);
+                                        finish();
                                     }else if (status.equals("existemail")) {
                                         Toast.makeText(getBaseContext(),"Your account already exist, Please contact to support team", Toast.LENGTH_LONG).show();
                                     } else if (status.equals("fail")) {
