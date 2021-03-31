@@ -42,7 +42,7 @@ public class ChatActivity extends AppCompatActivity {
         boolean installed = appInstalledOrNot();
         if (installed){
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("http://api.whatsapp.com/send?phone=+971553273607 &text="+message));
+            intent.setData(Uri.parse("http://api.whatsapp.com/send?phone=+97180077633762&text="+message));
             startActivity(intent);
         }else {
             Toast.makeText(getBaseContext(), "Whatsapp not installed on your device", Toast.LENGTH_SHORT).show();
