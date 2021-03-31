@@ -90,6 +90,7 @@
             android:layout_marginTop="@dimen/_5sdp"
             android:textAlignment="textEnd"
             android:gravity="center_horizontal"
+            android:visibility="gone"
             />
 
         <androidx.appcompat.widget.AppCompatButton

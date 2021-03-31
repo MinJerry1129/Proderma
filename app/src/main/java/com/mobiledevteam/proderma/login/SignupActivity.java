@@ -191,7 +191,7 @@ public class SignupActivity extends AppCompatActivity {
             _email.setError("Input Email");
             valid = false;
         } else {
-            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+            String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,10}$";
             Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(email);
             if (matcher.matches()){
@@ -205,13 +205,27 @@ public class SignupActivity extends AppCompatActivity {
             _phone.setError("Input Phone");
             valid = false;
         } else {
-            _phone.setError(null);
+            String expression = "^[+]+[0-9]{9,20}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(phone);
+            if (matcher.matches()){
+                _phone.setError(null);
+            }else{
+                _phone.setError("Input correct phone number");
+                valid = false;
+            }
         }
         if (password.isEmpty()) {
             _password.setError("Input Password");
             valid = false;
         } else {
-            _password.setError(null);
+            if(password.length() < 6 ){
+                _password.setError("Input password more than 6 charactors");
+                valid = false;
+            }else{
+                _password.setError(null);
+            }
+
         }
         return valid;
     }

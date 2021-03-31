@@ -231,7 +231,7 @@ public class SignupClinicActivity extends AppCompatActivity {
     public void onPickImage() {
 //        ImagePicker.create(this).returnMode(ReturnMode.ALL).folderMode(true).single().includeVideo(false).start();
 //        ImagePicker.Companion.with(this).cropSquare().compress(300).maxResultSize(400,400).start(201);
-        ImagePicker.Companion.with(this).saveDir(Environment.getExternalStorageDirectory()).cropSquare().maxResultSize(700,700).start();
+        ImagePicker.Companion.with(this).saveDir(Environment.getExternalStorageDirectory()).cropSquare().maxResultSize(1000,1000).start();
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -276,7 +276,16 @@ public class SignupClinicActivity extends AppCompatActivity {
             _whatsapp.setError("Input whatsappnumber");
             valid = false;
         } else {
-            _whatsapp.setError(null);
+            String expression = "^[+]+[0-9]{9,20}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(whataspp);
+            if (matcher.matches()){
+                _whatsapp.setError(null);
+            }else{
+                _whatsapp.setError("Input correct whatsapp number");
+                valid = false;
+            }
+
         }
         if (location.isEmpty()) {
             _location.setError("Input Address");
@@ -285,10 +294,18 @@ public class SignupClinicActivity extends AppCompatActivity {
             _location.setError(null);
         }
         if (visa.isEmpty()) {
-            _visa.setError("Input visacode");
+            _visa.setError("Input Elite code");
             valid = false;
         } else {
-            _visa.setError(null);
+            String expression = "^[0-9]{16,17}$";
+            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(visa);
+            if (matcher.matches()){
+                _visa.setError(null);
+            }else{
+                _visa.setError("Input correct Elite code");
+                valid = false;
+            }
         }
 
         return valid;

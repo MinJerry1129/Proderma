@@ -80,7 +80,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".login.SignupActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+
+        </activity>
         <activity
             android:name=".login.SigninActivity"
             android:screenOrientation="portrait" />
