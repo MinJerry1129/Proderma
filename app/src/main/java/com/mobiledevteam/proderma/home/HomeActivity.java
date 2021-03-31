@@ -57,6 +57,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity implements LocationListener {
@@ -72,6 +77,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     private String clinic_type = "normal";
     private String device_id;
     private String phone_token;
+    private String loginCheck = "no 1 normal";
+    private String mLoginStatus = "no";
     private LocationManager locationmanager;
 
     @Override
@@ -81,6 +88,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         device_id = Settings.Secure.getString(getBaseContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID);
         phone_token = FirebaseInstanceId.getInstance().getToken();
+        readFile();
 
         locationmanager = (LocationManager) getSystemService(LOCATION_SERVICE);
         String provider = locationmanager.getBestProvider(new Criteria(), true);
@@ -132,6 +140,39 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         Log.d("deviceId:::", device_id);
         Log.d("phoneToken:::", phone_token);
 
+    }
+    private void readFile(){
+        try {
+            FileInputStream fileInputStream = openFileInput("loginstatus.pdm");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            StringBuffer stringBuffer = new StringBuffer();
+            String lines;
+            while((lines = bufferedReader.readLine()) != null){
+                loginCheck = lines;
+            }
+            setValue();
+        }catch (FileNotFoundException e){
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void setValue(){
+        Log.d("login status:::", loginCheck);
+        String[] parts = loginCheck.split(" ");
+        if (parts[0].equals("no")){
+            Log.d("login status:::", loginCheck);
+            mLoginStatus = "no";
+            Common.getInstance().setLogin_status("no");
+        }else{
+            Log.d("login yes:::", "yes");
+            Log.d("login type:::", parts[2]);
+            mLoginStatus = "yes";
+            clinic_type = parts[2];
+            Common.getInstance().setLogin_status("yes");
+            Common.getInstance().setClinictype(clinic_type);
+            Common.getInstance().setClinicID(parts[1]);
+        }
     }
     private void initView(){
         HomeProductAdapter adapter_product = new HomeProductAdapter(getBaseContext(), mProduct);
@@ -244,7 +285,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         }
     };
     private void moveToClinic(){
-        String mLoginStatus = Common.getInstance().getLogin_status();
+        mLoginStatus = Common.getInstance().getLogin_status();
         if(mLoginStatus.equals("no")){
             Intent intent=new Intent(this, LoginHomeActivity.class);
             startActivity(intent);
@@ -271,7 +312,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         startActivity(intent);
     }
     private void moveToHistory(){
-        String mLoginStatus = Common.getInstance().getLogin_status();
+        mLoginStatus = Common.getInstance().getLogin_status();
         if(mLoginStatus.equals("no")){
             Intent intent=new Intent(this, LoginHomeActivity.class);
             startActivity(intent);

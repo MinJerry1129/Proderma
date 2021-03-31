@@ -27,7 +27,7 @@ public class SettingActivity extends AppCompatActivity {
     private Button _selLang;
     private Button _setPassword;
     private String sel_lang;
-
+    private String loginStatus = "no 1 normal";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,9 +46,8 @@ public class SettingActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Common.getInstance().setLogin_status("no");
-                Intent intent=new Intent(getBaseContext(), LoginHomeActivity.class);//LoginActivity.class);
-                startActivity(intent);
-                finish();
+                writeloginFile();
+
             }
         });
         _setPassword.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +96,20 @@ public class SettingActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+    private  void writeloginFile(){
+        try {
+            FileOutputStream fileOutputStream = openFileOutput("loginstatus.pdm", MODE_PRIVATE);
+            fileOutputStream.write(loginStatus.getBytes());
+            fileOutputStream.close();
+
+            Intent intent=new Intent(getBaseContext(), LoginHomeActivity.class);//LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }catch (FileNotFoundException e){
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     private  void writeFile(){
         try {

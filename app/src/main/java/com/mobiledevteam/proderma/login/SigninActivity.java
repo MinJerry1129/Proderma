@@ -26,6 +26,9 @@ import com.mobiledevteam.proderma.cell.HomeClinic;
 import com.mobiledevteam.proderma.cell.HomeProduct;
 import com.mobiledevteam.proderma.home.HomeActivity;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,7 +38,7 @@ public class SigninActivity extends AppCompatActivity {
     private Button _btnLogin;
     private TextView _txtSignup;
     private String phone_token;
-
+    private String loginStatus;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,9 +110,8 @@ public class SigninActivity extends AppCompatActivity {
                                     Common.getInstance().setClinicID(clinic_id);
                                     Common.getInstance().setLogin_status("yes");
                                     Common.getInstance().setClinictype(type);
-                                    Intent intent=new Intent(getBaseContext(), HomeActivity.class);
-                                    startActivity(intent);
-                                    finish();
+                                    loginStatus = "yes" + " " + clinic_id + " " + type;
+                                    writeFile();
                                 }
                             } else {
 
@@ -120,6 +122,21 @@ public class SigninActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private  void writeFile(){
+        try {
+            FileOutputStream fileOutputStream = openFileOutput("loginstatus.pdm", MODE_PRIVATE);
+            fileOutputStream.write(loginStatus.getBytes());
+            fileOutputStream.close();
+
+            Intent intent=new Intent(getBaseContext(), HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }catch (FileNotFoundException e){
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
