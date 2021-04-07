@@ -96,7 +96,7 @@ public class SignupClinicActivity extends AppCompatActivity {
         geocoder = new Geocoder(this, getDefault());
         if(!Places.isInitialized()){
 //            Places.initialize(getBaseContext(),"AIzaSyDx0lfU-akX0HiFDtEUUIJ99rugOB95Ip4");
-            Places.initialize(getBaseContext(),"AIzaSyB8RD2Pu5w7bv-UrhWA5dN1Brzdo-yf1SI");
+            Places.initialize(getBaseContext(),"AIzaSyApkOUDEBKVYSBdPv0QNT8kTbonpoK-g4o");
         }
         locationmanager = (LocationManager) getSystemService(LOCATION_SERVICE);
         String provider = locationmanager.getBestProvider(new Criteria(), true);
@@ -209,7 +209,7 @@ public class SignupClinicActivity extends AppCompatActivity {
                                 String status = result.get("status").getAsString();
                                 if (status.equals("ok")) {
                                     signup_status = "yes";
-                                    Toast.makeText(getBaseContext(),"Signup Success, Please wait accept or contact to support team", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getBaseContext(),"Signup done, Signup done, Thanks for your registration, our team will contact you?", Toast.LENGTH_LONG).show();
                                 }else if (status.equals("noclinic")) {
                                     Toast.makeText(getBaseContext(),"You are not elite clinic, Please check visacode", Toast.LENGTH_LONG).show();
                                 }else if (status.equals("existemail")) {
@@ -262,9 +262,6 @@ public class SignupClinicActivity extends AppCompatActivity {
 //                _imgClinic.setImageURI(Uri.parse(filePath));
 //            }
 //        }
-
-
-
         super.onActivityResult(requestCode, resultCode, data);
     }
     public boolean validate() {
@@ -297,15 +294,7 @@ public class SignupClinicActivity extends AppCompatActivity {
             _visa.setError("Input Elite code");
             valid = false;
         } else {
-            String expression = "^[0-9]{16,17}$";
-            Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(visa);
-            if (matcher.matches()){
-                _visa.setError(null);
-            }else{
-                _visa.setError("Input correct Elite code");
-                valid = false;
-            }
+            _visa.setError(null);
         }
 
         return valid;

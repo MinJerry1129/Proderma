@@ -169,9 +169,9 @@ public class OneClinicActivity extends AppCompatActivity {
     }
     private void setInfo(){
         _clinicname.setText(mOneClinic.getmName());
-        _cliniclocation.setText(mOneClinic.getmLocation());
-        _clinicphone.setText(mOneClinic.getmPhone());
-        _clinicwhatsapp.setText(mOneClinic.getmWhatsapp());
+//        _cliniclocation.setText(mOneClinic.getmLocation());
+//        _clinicphone.setText(mOneClinic.getmPhone());
+//        _clinicwhatsapp.setText(mOneClinic.getmWhatsapp());
         _clinicdescription.setText(mOneClinic.getmDescription());
         Ion.with(getBaseContext()).load(mOneClinic.getmImage()).intoImageView(_clinicimg);
     }

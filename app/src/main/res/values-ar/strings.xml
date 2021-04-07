@@ -22,7 +22,7 @@
     <string name="event_interest">Interest</string>
     <string name="search_product">البحث</string>
     <string name="product_quality">العدد:</string>
-    <string name="product_more_info">مزيد من المعلومات</string>
+    <string name="product_more_info">المزيد من التفاصيل</string>
     <string name="product_have">العيادات لديها منتج</string>
     <string name="product_extra">مجاني:</string>
     <string name="product_information">معلومات:</string>
@@ -69,4 +69,8 @@
     <string name="setting_originalpassword">كلمة السر القديمة</string>
     <string name="setting_newpassword">كلمة السر الجديد</string>
     <string name="setting_confirmpassword">تاكيد كلمة السر</string>
+
+    <string name="clinic_location">موقع العيادة</string>
+    <string name="clinic_phone">اتصل بنا</string>
+    <string name="clinic_whatsapp">تحدث معنا</string>
 </resources>

@@ -139,7 +139,7 @@ public class SignupActivity extends AppCompatActivity {
                                 if (result != null) {
                                     String status = result.get("status").getAsString();
                                     if (status.equals("ok")) {
-                                        Toast.makeText(getBaseContext(),"Signup Success, Please wait accept or contact to support team", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(getBaseContext(),"Signup done, Thanks for your registration, our team will contact you?", Toast.LENGTH_LONG).show();
                                         Intent intent=new Intent(SignupActivity.this, HomeActivity.class);
                                         startActivity(intent);
                                         finish();

@@ -21,7 +21,7 @@
     <string name="product_price">Price($):</string>
     <string name="search_product">Search by name</string>
     <string name="product_quality">Quality:</string>
-    <string name="product_more_info">More info</string>
+    <string name="product_more_info">More details</string>
     <string name="product_extra">FOC:</string>
     <string name="product_information">Informations:</string>
     <string name="product_have">Clinics have product</string>
@@ -71,6 +71,11 @@
     <string name="setting_originalpassword">Original Password</string>
     <string name="setting_newpassword">New Password</string>
     <string name="setting_confirmpassword">Confirm Password</string>
+
+    <string name="clinic_location">Clinic Location</string>
+    <string name="clinic_phone">Call us</string>
+    <string name="clinic_whatsapp">Whatsapp us</string>
+
 
 
 </resources>

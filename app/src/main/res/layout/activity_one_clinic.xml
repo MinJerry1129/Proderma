@@ -130,7 +130,7 @@
                                 android:id="@+id/txt_cliniclocation"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text=""
+                                android:text="@string/clinic_location"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_12sdp"/>
                         </LinearLayout>
@@ -148,6 +148,7 @@
                                 android:layout_height="wrap_content"
                                 android:paddingStart="@dimen/_5sdp"
                                 android:textColor="@color/white"
+                                android:text="@string/clinic_phone"
                                 android:textSize="@dimen/_12sdp"
                                 />
                         </LinearLayout>
@@ -163,7 +164,7 @@
                                 android:id="@+id/txt_whatsapp"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text=""
+                                android:text="@string/clinic_whatsapp"
                                 android:paddingStart="@dimen/_5sdp"
                                 android:textColor="@color/white"
                                 android:textSize="@dimen/_12sdp"/>
