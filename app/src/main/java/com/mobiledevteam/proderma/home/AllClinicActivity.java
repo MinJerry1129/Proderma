@@ -95,11 +95,14 @@ public class AllClinicActivity extends AppCompatActivity {
                         public void onCompleted(Exception e, JsonObject result) {
                             progressDialog.dismiss();
                             if (result != null) {
+                                Log.d("result::", result.toString());
                                 JsonArray clinics_array = result.get("clinicsInfo").getAsJsonArray();
                                 for(JsonElement clinicElement : clinics_array){
                                     JsonObject theclinic = clinicElement.getAsJsonObject();
                                     String id = theclinic.get("id").getAsString();
                                     String name = theclinic.get("clinicname").getAsString();
+                                    String firstname = theclinic.get("firstname").getAsString();
+                                    String secondname = theclinic.get("secondname").getAsString();
                                     String location = theclinic.get("location").getAsString();
                                     String image = theclinic.get("photo").getAsString();
                                     String description = theclinic.get("information").getAsString();
@@ -109,7 +112,7 @@ public class AllClinicActivity extends AppCompatActivity {
                                     String longitude = theclinic.get("longitude").getAsString();
                                     LatLng clinic_location = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
                                     String doctor = "0";
-                                    mAllClinicList.add(new HomeClinic(id,name,location,image,description,phone,whatsapp,doctor,clinic_location));
+                                    mAllClinicList.add(new HomeClinic(id,name,firstname + " " +secondname ,image,description,phone,whatsapp,doctor,clinic_location));
                                 }
                                 sortList();
                             } else {

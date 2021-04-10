@@ -198,6 +198,8 @@ public class OneClinicActivity extends AppCompatActivity {
 
     }
     private void sendLocation(){
+//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/@"+ cLatitude +","+ cLongitude+",14z"));
+        //https://www.google.com/maps/dir/37.41955,-122.1291514/37.4210498,-122.1287652/@37.4154769,-122.1237437,15z
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/@"+ cLatitude +","+ cLongitude+",14z"));
         startActivity(intent);
     }

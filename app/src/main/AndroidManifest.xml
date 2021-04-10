@@ -23,15 +23,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proderma"
         android:usesCleartextTraffic="true">
-        <activity android:name=".news.NewsActivity"
-            android:screenOrientation="portrait" ></activity>
-        <activity android:name=".clinic.ClinicOfferEditActivity"
-            android:screenOrientation="portrait"  />
-        <activity android:name=".clinic.ClinicOfferAddActivity"
+        <activity android:name=".home.MapViewActivity"></activity>
+        <activity
+            android:name=".news.NewsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".event.OneEventActivity"
+        <activity
+            android:name=".clinic.ClinicOfferEditActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".clinic.ClinicImageViewActivity"
+        <activity
+            android:name=".clinic.ClinicOfferAddActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".event.OneEventActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".clinic.ClinicImageViewActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".home.PdfViewerActivity"
@@ -80,9 +86,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".login.SignupActivity"
-            android:screenOrientation="portrait" >
-
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".login.SigninActivity"
             android:screenOrientation="portrait" />
