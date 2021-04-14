@@ -10,7 +10,7 @@ android {
         applicationId "com.mobiledevteam.proderma"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 7
+        versionCode 9
         versionName "1.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -27,6 +27,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
 allprojects {
     repositories {
         maven { url "https://jitpack.io" }

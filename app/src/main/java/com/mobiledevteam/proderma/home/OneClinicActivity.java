@@ -13,6 +13,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -59,6 +62,7 @@ public class OneClinicActivity extends AppCompatActivity {
     private TextView _clinicphone;
     private TextView _clinicwhatsapp;
     private TextView _clinicdescription;
+    private TextView _clinicdoctorname;
     private ImageView _clinicimg;
 
     private ArrayList<ClinicDoctor> mDoctor=new ArrayList<>();
@@ -69,6 +73,9 @@ public class OneClinicActivity extends AppCompatActivity {
     private int slideCurrentItem=0;
     private String cLatitude;
     private String cLongitude;
+
+    private LatLng my_location;
+    private LocationManager locationmanager;
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -95,11 +102,27 @@ public class OneClinicActivity extends AppCompatActivity {
         _doctorRecycle = (RecyclerView)findViewById(R.id.recycler_doctor);
         _offerGridView = (GridView)findViewById(R.id.grid_allOffer);
         _clinicname = (TextView)findViewById(R.id.txt_clinicname);
+        _clinicdoctorname = (TextView)findViewById(R.id.txt_doctorname);
         _cliniclocation = (TextView)findViewById(R.id.txt_cliniclocation);
         _clinicphone = (TextView)findViewById(R.id.txt_phone);
         _clinicwhatsapp = (TextView)findViewById(R.id.txt_whatsapp);
         _clinicdescription = (TextView)findViewById(R.id.txt_description);
         _clinicimg = (ImageView) findViewById(R.id.img_clinic);
+
+        locationmanager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        String provider = locationmanager.getBestProvider(new Criteria(), true);
+        Location LocationGps;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }else{
+            LocationGps = locationmanager.getLastKnownLocation(provider);
+        }
+        if (LocationGps != null) {
+            my_location = new LatLng(LocationGps.getLatitude(), LocationGps.getLongitude());
+        }else{
+            my_location = new LatLng(48.8499,2.3512);
+        }
+
         Common.getInstance().setClinicpagetype("preview");
         setReady();
         getData();
@@ -200,7 +223,7 @@ public class OneClinicActivity extends AppCompatActivity {
     private void sendLocation(){
 //        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/@"+ cLatitude +","+ cLongitude+",14z"));
         //https://www.google.com/maps/dir/37.41955,-122.1291514/37.4210498,-122.1287652/@37.4154769,-122.1237437,15z
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/@"+ cLatitude +","+ cLongitude+",14z"));
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/maps/dir/"+ my_location.latitude +","+ my_location.longitude+ "/" + cLatitude +","+ cLongitude + "/@"+ my_location.latitude +","+ my_location.longitude + ",14z"));
         startActivity(intent);
     }
     private boolean appInstalledOrNot(){
@@ -243,6 +266,8 @@ public class OneClinicActivity extends AppCompatActivity {
                                 JsonArray clinics_images = result.get("clinicImages").getAsJsonArray();
                                 String id = clinics_object.get("id").getAsString();
                                 String name = clinics_object.get("clinicname").getAsString();
+                                String firstname = clinics_object.get("firstname").getAsString();
+                                String secondname = clinics_object.get("secondname").getAsString();
                                 String location = clinics_object.get("location").getAsString();
                                 String image = clinics_object.get("photo").getAsString();
                                 String description = clinics_object.get("information").getAsString();
@@ -250,6 +275,7 @@ public class OneClinicActivity extends AppCompatActivity {
                                 String whatsapp = clinics_object.get("whatsapp").getAsString();
                                 String latitude = clinics_object.get("latitude").getAsString();
                                 String longitude = clinics_object.get("longitude").getAsString();
+                                _clinicdoctorname.setText(firstname + " " + secondname);
                                 cLatitude = latitude;
                                 cLongitude = longitude;
                                 LatLng clinic_location = new LatLng(Double.parseDouble(latitude),Double.parseDouble(longitude));
