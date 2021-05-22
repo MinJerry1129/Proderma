@@ -13,11 +13,11 @@
         android:icon="@drawable/ic_outline_chat_24"
         android:title="@string/menu_chat" />
     <item
+        android:id="@+id/navigation_result"
+        android:icon="@drawable/ic_baseline_crop_original_24"
+        android:title="@string/menu_result" />
+    <item
         android:id="@+id/navigation_history"
         android:icon="@drawable/ic_outline_history_24"
         android:title="@string/menu_history" />
-    <item
-        android:id="@+id/navigation_setting"
-        android:icon="@drawable/ic_outline_settings_24"
-        android:title="@string/menu_setting" />
 </menu>

@@ -6,6 +6,7 @@
     <string name="menu_event">Event</string>
     <string name="menu_chat">Chat</string>
     <string name="menu_history">History</string>
+    <string name="menu_result">Result</string>
     <string name="menu_setting">Setting</string>
 
     <string name="home_lastnews">Lastest News</string>

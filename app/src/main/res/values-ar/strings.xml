@@ -6,6 +6,7 @@
     <string name="menu_event">فعاليات</string>
     <string name="menu_chat">محادثة</string>
     <string name="menu_history">سجل</string>
+    <string name="menu_result">نتيجة</string>
     <string name="menu_setting">إعدادات</string>
 
     <string name="home_lastnews">أحدث الأخبار</string>

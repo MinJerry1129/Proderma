@@ -10,26 +10,39 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/major"
-        android:gravity="end">
+        android:background="@color/major">
         <ImageView
-            android:id="@+id/img_notiview"
+            android:id="@+id/img_setting"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:padding="10dp"
-            android:src="@drawable/alarm"
-            android:layout_marginEnd="-15dp"/>
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:padding="5dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_outline_settings_24"
+            app:tint="@color/white"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="end">
             <ImageView
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="10dp"
-                android:src="@drawable/noti"/>
-        </RelativeLayout>
+                android:id="@+id/img_notiview"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:src="@drawable/alarm"
+                android:layout_marginEnd="-15dp"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/noti"/>
+            </RelativeLayout>
+        </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
