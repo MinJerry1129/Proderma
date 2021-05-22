@@ -64,13 +64,14 @@ public class NewsActivity extends AppCompatActivity {
                                     String title = thenews.get("title").getAsString();
                                     String datetime = thenews.get("date").getAsString();
                                     String description = thenews.get("description").getAsString();
+                                    String infourl = thenews.get("url").getAsString();
                                     String type = thenews.get("type").getAsString();
                                     if(type.equals("all")){
-                                        mAllNews.add(new News(id,title,datetime,description,type));
+                                        mAllNews.add(new News(id,title,datetime,description,infourl,type));
                                     }
                                     if(loginStatus.equals("yes")){
                                         if(type.equals(userType)){
-                                            mAllNews.add(new News(id,title,datetime,description,type));
+                                            mAllNews.add(new News(id,title,datetime,description,infourl,type));
                                         }
                                     }
                                 }

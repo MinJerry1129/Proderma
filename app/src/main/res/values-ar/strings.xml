@@ -74,4 +74,5 @@
     <string name="clinic_location">موقع العيادة</string>
     <string name="clinic_phone">اتصل بنا</string>
     <string name="clinic_whatsapp">تحدث معنا</string>
+    <string name="item_moreinfo">معلومات اكثر</string>
 </resources>

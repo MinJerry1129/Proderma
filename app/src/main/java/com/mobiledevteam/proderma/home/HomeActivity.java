@@ -51,6 +51,7 @@ import com.mobiledevteam.proderma.event.EventHomeActivity;
 import com.mobiledevteam.proderma.history.HistoryHomeActivity;
 import com.mobiledevteam.proderma.login.LoginHomeActivity;
 import com.mobiledevteam.proderma.news.NewsActivity;
+import com.mobiledevteam.proderma.result.ResultActivity;
 import com.mobiledevteam.proderma.setting.SettingActivity;
 
 import org.json.JSONArray;
@@ -72,6 +73,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     private TextView _txtAllClinic;
     private TextView _txtNews;
     private ImageView _imgNoti;
+    private ImageView _imgSetting;
     private ArrayList<HomeProduct> mProduct=new ArrayList<>();
     private ArrayList<HomeClinic> mClinic=new ArrayList<>();
     private String clinic_type = "normal";
@@ -115,6 +117,13 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         _txtAllClinic = (TextView)findViewById(R.id.txt_clinic_all);
         _txtNews = (TextView)findViewById(R.id.txt_news);
         _imgNoti = (ImageView) findViewById(R.id.img_notiview);
+        _imgSetting = (ImageView) findViewById(R.id.img_setting);
+        _imgSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moveToSetting();
+            }
+        });
         _imgNoti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -202,12 +211,16 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                             progressDialog.dismiss();
                             Log.d("result::", result.toString());
                             if (result != null) {
+                                String selLang = Common.getInstance().getSelLang();
                                 if(result.get("notification").isJsonNull()){
 
                                 }else{
                                     JsonObject newsObject = result.getAsJsonObject("notification");
                                     if(newsObject != null){
                                         String news = newsObject.get("description").getAsString();
+                                        if(selLang.equals("ar")){
+                                            news = newsObject.get("descriptionar").getAsString();
+                                        }
                                         _txtNews.setText(news);
                                     }
                                 }
@@ -229,7 +242,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                                     mClinic.add(new HomeClinic(id,name,location,image,description,phone,whatsapp,doctor,clinic_location));
                                 }
                                 JsonArray products_array = result.get("productsInfo").getAsJsonArray();
-                                String selLang = Common.getInstance().getSelLang();
+
                                 for(JsonElement productElement : products_array){
                                     JsonObject theproduct = productElement.getAsJsonObject();
                                     String id = theproduct.get("id").getAsString();
@@ -274,11 +287,11 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                 case R.id.navigation_chat:
                     moveToChat();
                     return true;
+                case R.id.navigation_result:
+                    moveToResult();
+                    return true;
                 case R.id.navigation_history:
                     moveToHistory();
-                    return true;
-                case R.id.navigation_setting:
-                    moveToSetting();
                     return true;
             }
             return false;
@@ -326,6 +339,11 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     }
     private void moveToSetting(){
         Intent intent=new Intent(this, SettingActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    private void moveToResult(){
+        Intent intent=new Intent(this, ResultActivity.class);
         startActivity(intent);
         finish();
     }

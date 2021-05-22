@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proderma"
         android:usesCleartextTraffic="true">
-        <activity android:name=".home.MapViewActivity"></activity>
+        <activity android:name=".result.ResultActivity"></activity>
+        <activity android:name=".home.MapViewActivity" />
         <activity
             android:name=".news.NewsActivity"
             android:screenOrientation="portrait" />
@@ -86,7 +87,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".login.SignupActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".login.SigninActivity"
             android:screenOrientation="portrait" />
