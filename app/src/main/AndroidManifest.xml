@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Proderma"
         android:usesCleartextTraffic="true">
-        <activity android:name=".result.ResultActivity"></activity>
+        <activity android:name=".result.FullScreenActivity"></activity>
+        <activity android:name=".result.ResultActivity" />
         <activity android:name=".home.MapViewActivity" />
         <activity
             android:name=".news.NewsActivity"

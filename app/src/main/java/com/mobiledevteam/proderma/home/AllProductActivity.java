@@ -56,6 +56,7 @@ public class AllProductActivity extends AppCompatActivity implements BrandAdapte
         setReady();
         getData();
     }
+
     private void setReady(){
         _allGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
