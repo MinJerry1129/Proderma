@@ -10,6 +10,7 @@ public class Common {
     private String clinicID;
     private String selLang = "en";
     private String clinictype = "normal";
+    private String imgUrl = "";
 
     public void Comon(){
         //this.baseURL="http://localhost/jsontest/";
@@ -33,4 +34,12 @@ public class Common {
 
     public String getClinictype() { return clinictype;}
     public void setClinictype(String clinictype) {this.clinictype = clinictype;}
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
 }
