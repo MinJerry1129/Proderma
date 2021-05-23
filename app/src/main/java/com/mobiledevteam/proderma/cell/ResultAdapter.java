@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 
 import com.koushikdutta.ion.Ion;
+import com.mobiledevteam.proderma.Common;
 import com.mobiledevteam.proderma.R;
 
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ public class ResultAdapter extends ArrayAdapter<Result> {
         Result currentProduct = allResultList.get(position);
 //
         ImageView product_image = (ImageView) listItem.findViewById(R.id.img_result);
-        Ion.with(mContext).load(currentProduct.getmImageurl()).intoImageView(product_image);
+        Ion.with(mContext).load(Common.getInstance().getBaseURL() + currentProduct.getmImageurl()).intoImageView(product_image);
         return listItem;
     }
 }
